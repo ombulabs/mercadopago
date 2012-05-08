@@ -3,7 +3,7 @@ MercadoPago
 
 Esta gem para Ruby é um cliente que permite que desenvolvedores acessem os serviços do http://www.mercadopago.com (MercadoPago).
 
-Antes de começar a usá-la, é recomendável conhecer mais sobre as APIs do MercadoPago e ler as suas documentações. Como esta gem utiliza Hashes para representar requests e responses, é necessário conhecer os parâmetros das APIs do MercadoPago para fazer as chamadas corretas e processar as respostas corretamente.
+Antes de começar a usá-la, é recomendável conhecer mais sobre as APIs do MercadoPago e ler as suas documentações. Como esta gem utiliza hashes para representar requests e responses, é necessário conhecer os parâmetros das APIs do MercadoPago para fazer as chamadas corretas e processar as respostas corretamente.
 
 Para conhecer a documentação das APIs do MercadoPago, veja este link: https://developers.mercadopago.com/integracao-checkout
 
@@ -125,7 +125,7 @@ Para consultar o status de um pagamento é necessário ter o id associado a ele,
 
 	notification = Mercadopago::Collection.notification(access_token, payment_id)
 	
-Será retornado um Hash similar ao seguinte:
+Será retornado um hash similar ao seguinte:
 
 	{
 		"collection" => {
@@ -184,9 +184,9 @@ Será retornado um Hash similar ao seguinte:
 
 ### Erros
 
-Os erros retornados por esta gem são Hashes quem contém os dados recebidos dos webservices do MercadoPago.
+Os erros retornados por esta gem são hashes quem contém os dados recebidos dos webservices do MercadoPago.
 
-Por exemplo, caso seja requisitado um access_token através da credenciais inválidas, um Hash de erro como o seguinte será retornado:
+Por exemplo, caso seja requisitado um access_token através da credenciais inválidas, um hash de erro como o seguinte será retornado:
 
 	{
 		"message" => "client_id[1,234] o client_secret[abcdefghijklmnopqrstuvwxyz] inválidos",
