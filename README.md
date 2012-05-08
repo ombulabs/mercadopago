@@ -21,7 +21,7 @@ Você pode também adicionar a gem ao Gemfile do seu projeto:
 Credenciais de acesso
 ---------------------
 
-Para usar esta gem, é necessário fornecer o client_id e um client_secret da sua conta do MercaodPago. Esta gem não armazena este dados sob nenhuma hipótese. Para consultar as suas credenciais no MercadoPago, acesse o link a seguir: https://www.mercadopago.com/mlb/ferramentas/aplicacoes
+Para usar esta gem, é necessário fornecer o client_id e o client_secret da sua conta do MercaodPago. Esta gem não armazena estes dados sob nenhuma hipótese. Para consultar as suas credenciais no MercadoPago, acesse o link a seguir: https://www.mercadopago.com/mlb/ferramentas/aplicacoes
 
 Exemplos
 --------
@@ -49,28 +49,28 @@ Você deverá usar o "access_token" nas demais requisições para outros webserv
 ### Criação de pagamento
 
 	data = {
-	  "external_reference" => "OPERATION-ID-1234",
-	  "items" => [
-	    {
-	      "id" => "Código 123",
-	      "title" => "Nome produto",
-	      "description" => "Descrição produto",
-	      "quantity" => 1,
-	      "unit_price" => 10.50,
-	      "currency_id" => "BRL",
-	      "picture_url" => "http://www.site.com.br/image/123.png"
-	    }
+		"external_reference" => "OPERATION-ID-1234",
+		"items" => [
+			{
+				"id" => "Código 123",
+				"title" => "Nome produto",
+				"description" => "Descrição produto",
+				"quantity" => 1,
+				"unit_price" => 10.50,
+				"currency_id" => "BRL",
+				"picture_url" => "http://www.site.com.br/image/123.png"
+			}
 		],
 		"payer" => {
-		  "name"=> "João",
-		  "surname"=> "Silva",
-	    "email"=> "comprador@email.com.br"
-	  },
-	  "back_urls"=> {
-	    "pending"=> "https://www.site.com.br/pending",
-	    "success"=> "http://www.site.com.br/success",
+			"name"=> "João",
+			"surname"=> "Silva",
+			"email"=> "comprador@email.com.br"
+		},
+		"back_urls"=> {
+			"pending"=> "https://www.site.com.br/pending",
+			"success"=> "http://www.site.com.br/success",
 			"failure"=> "http://www.site.com.br/failure"
-	  }
+		}
 	}
 
 	payment = Mercadopago::Checkout.create_preference(access_token, data)
@@ -83,7 +83,7 @@ Como resposta, será recebido um hash como o seguinte:
 		"collector_id" => 123456789,
 		"back_urls" => {
 			"pending"=> "https://www.site.com.br/pending",
-	    "success"=> "http://www.site.com.br/success",
+			"success"=> "http://www.site.com.br/success",
 			"failure"=> "http://www.site.com.br/failure"
 		},
 		"sponsor_id" => nil,
