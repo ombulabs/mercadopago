@@ -1,10 +1,10 @@
 require 'rest-client'
 require 'json'
 
-module Mercadopago
-  
+module MercadoPago
+
   module Request
-    
+
     #
     # This URL is the base for all API calls.
     #
@@ -31,7 +31,7 @@ module Mercadopago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.wrap_get(path, headers = {})
-      
+
       make_request(:get, path, nil, headers)
 
     end
@@ -45,11 +45,11 @@ module Mercadopago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.make_request(type, path, payload = nil, headers = {})
-      
+
       begin
         args = [type, "#{MERCADOPAGO_URL}#{path}", payload, headers].compact
         response = RestClient.send *args
-        
+
         JSON.load(response)
       rescue Exception => e
         JSON.load(e.response)
@@ -57,10 +57,9 @@ module Mercadopago
 
     end
 
-
     class ClientError < Exception
     end
-    
+
   end
-  
+
 end
