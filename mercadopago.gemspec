@@ -4,11 +4,11 @@ require "mercadopago/version"
 
 Gem::Specification.new do |s|
   s.name        = "mercadopago"
-  s.version     = Mercadopago::VERSION
-  s.authors     = ["Kauplus Social Commerce"]
+  s.version     = MercadoPago::VERSION
+  s.authors     = ["Kauplus Social Commerce", "Ombu Shop, Tu Tienda Online"]
   s.email       = ["suporte@kauplus.com.br"]
   s.homepage    = "https://github.com/kauplus/mercadopago"
-  s.summary     = %q{Cliente para a API do MercadoPago}
+  s.summary     = %q{Client for the MercadoPago API}
   s.description = %q{Esta gem é um cliente que permite que desenvolvedores acessem os serviços do http://www.mercadopago.com (MercadoPago)}
 
   s.rubyforge_project = "mercadopago"
@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   # specify any dependencies here:
   s.add_dependency 'json', '>= 1.4.6'
   s.add_dependency 'rest-client', '1.6.7'
+  s.add_development_dependency 'pry'
 end
