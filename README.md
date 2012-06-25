@@ -229,9 +229,11 @@ This gem has tests for a few methods. To check if it is working properly, just r
 ### Changelog
 
 1.0.1 (thanks etagwerker)
+
 Added client interface, renamed "Mercadopago" to "MercadoPago", translated project summary to English and added tests for a few methods.
 
 0.0.1
+
 First release. It's possible authenticate with the MercadoPago APIs, create payments and check payment status.
 
 
