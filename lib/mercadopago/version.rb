@@ -1,3 +1,3 @@
-module Mercadopago
-  VERSION = "0.0.1"
+module MercadoPago
+  VERSION = "1.0.1"
 end
