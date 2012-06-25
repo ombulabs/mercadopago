@@ -226,7 +226,8 @@ This gem has tests for a few methods. To check if it is working properly, just r
 
     rake test
 
-### Changelog
+Changelog
+---------
 
 1.0.1 (thanks etagwerker)
 
@@ -237,7 +238,8 @@ Added client interface, renamed "Mercadopago" to "MercadoPago", translated proje
 First release. It's possible authenticate with the MercadoPago APIs, create payments and check payment status.
 
 
-### Copyright
+Copyright
+---------
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
