@@ -38,7 +38,7 @@ out your MercadoPago credentials, you can go here:
 Examples
 --------
 
-### Autentication
+### Authentication
 	
     # Use your credentials
     client_id = '1234'
@@ -145,7 +145,7 @@ If everything worked out alright, you will get a response like this:
 To check the payment status you will need the payment ID. Only then you
 can call the [MercadoPago IPN](https://developers.mercadopago.com/api-ipn).
 
-    # Use o id do pagamento recebido na IPN do MercadoPago.
+    # Use the payment ID received on the IPN.
     payment_id = '987654321'
 
     notification = MercadoPago::Collection.notification(access_token, payment_id)
@@ -206,7 +206,6 @@ You will get a response like this one:
       }
     } 
 
-
 ### Errors
 
 Errors will also be hashes with status code, message and error key.
@@ -220,6 +219,21 @@ operation, you will see something like this:
      "status" => 404, 
      "cause" => []
     }
+
+### Tests
+
+This gem has tests for a few methods. To check if it is working properly, just run:
+
+    rake test
+
+### Changelog
+
+1.0.1 (thanks etagwerker)
+Added client interface, renamed "Mercadopago" to "MercadoPago", translated project summary to English and added tests for a few methods.
+
+0.0.1
+First release. It's possible authenticate with the MercadoPago APIs, create payments and check payment status.
+
 
 ### Copyright
 
