@@ -235,7 +235,7 @@ Added client interface, renamed "Mercadopago" to "MercadoPago", translated proje
 
 0.0.1
 
-First release. It's possible authenticate with the MercadoPago APIs, create payments and check payment status.
+First release. It's possible to authenticate with the MercadoPago APIs, create payments and check payment status.
 
 
 Copyright

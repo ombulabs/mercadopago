@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["suporte@kauplus.com.br"]
   s.homepage    = "https://github.com/kauplus/mercadopago"
   s.summary     = %q{Client for the MercadoPago API}
-  s.description = %q{Esta gem é um cliente que permite que desenvolvedores acessem os serviços do http://www.mercadopago.com (MercadoPago)}
+  s.description = %q{This gem allows developers to use the services available in the MercadoPago API (http://www.mercadopago.com)}
 
   s.rubyforge_project = "mercadopago"
 
