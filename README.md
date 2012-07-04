@@ -3,9 +3,7 @@ MercadoPago Gem
 
 This is a Ruby client for all the services offered by [MercadoPago](http://www.mercadopago.com). 
 
-You should read the MercadoPago API documentation before you use this
-gem. This gem works with hashes and only deals with requests/responses.
-That's why you will need an understanding of their services.
+You should read the MercadoPago API documentation before you use this gem. This gem works with hashes and only deals with requests/responses. That's why you will need an understanding of their services.
 
 You can read the documentation of the MercadoPago API here: 
 * Portuguese: https://developers.mercadopago.com/integracao-checkout
@@ -15,143 +13,121 @@ Installation
 ------------
 
 To install the last version of the gem:
-
+    
     gem install mercadopago
-	
+    
 If you are using bundler, add this to your Gemfile:
-
+    
     gem 'mercadopago'
-
-
+    
 Access Credentials
 ------------------
 
-To use this gem, you will need the client_id and client_secret for a
-MercadoPago account. 
+To use this gem, you will need the client_id and client_secret for a MercadoPago account. 
 
-In any case, this gem will not store this information. In order to find
-out your MercadoPago credentials, you can go here:
+In any case, this gem will not store this information. In order to find out your MercadoPago credentials, you can go here:
 
 * Brasil: https://www.mercadopago.com/mlb/ferramentas/aplicacoes
 * Argentina: https://www.mercadopago.com/mla/herramientas/aplicaciones
 
-Examples
---------
+How to use
+----------
 
-### Authentication
-	
+### Client creation
+
+The first thing to do is create a client. The client will authenticate with MercadoPago and will allow you to interact with the MercadoPago API.
+    
     # Use your credentials
     client_id = '1234'
     client_secret = 'abcdefghijklmnopqrstuvwxyz'
-
-    access = MercadoPago::Authentication.access_token(client_id, client_secret)
-	
-The response will be a hash like this one:
-
-    {
-      "access_token" => "APP_USR-1234-999999-abcdefghijklmnopqrstuvwxyz-999999999",
-      "token_type" => "bearer",
-      "expires_in" => 10800,
-      "scope" => "mclics_advertising offline_access read write",
-      "refresh_token" => "TG-abcdefghijklmnopqrstuvwxyz"
-    }
-
-If the credentials are not correct, you will get a response like this
-one:
-
-    {
-      "message" => "credenciales inv&aacute;lidas", 
-      "error"=>"invalid_client", 
-      "status"=>400, 
-      "cause"=>[]}
-
-Once you have the access_token you will use it for every call:
+    
+    mp_client = MercadoPago::Client.new(client_id, client_secret)
+    
+If any error ocurred while authenticating with MercadoPago, an AccessError will be raised. If nothing goes wrong, no errors are raised and you are ready to use the API.
 
 ### Payment Creation
 
-Your request will need a hash to explain what the payment is for. For
-example:
-
+Your request will need a hash to explain what the payment is for. For example:
+    
     data = {
       "external_reference" => "OPERATION-ID-1234",
       "items" => [
         {
           "id" => "Código 123",
-          "title" => "River Plate T-Shirt",
+          "title" => "Example T-Shirt",
           "description" => "Red XL T-Shirt",
           "quantity" => 1,
           "unit_price" => 10.50,
           "currency_id" => "BRL",
-          "picture_url" => "http://www.site.com.br/image/123.png"
+          "picture_url" => "http://www.site.com/image/123.png"
         }
       ],
       "payer" => {
-        "name"=> "João",
-        "surname"=> "Silva",
-        "email"=> "comprador@email.com.br"
+        "name"=> "John",
+        "surname"=> "Mikel",
+        "email"=> "buyer@email.com"
       },
       "back_urls"=> {
-        "pending"=> "https://www.site.com.br/pending",
-        "success"=> "http://www.site.com.br/success",
-        "failure"=> "http://www.site.com.br/failure"
+        "pending"=> "https://www.site.com/pending",
+        "success"=> "http://www.site.com/success",
+        "failure"=> "http://www.site.com/failure"
       }
     }
-
-    payment = MercadoPago::Checkout.create_preference(access_token, data)
-	
+    
+    payment = mp_client.create_preference(access_token, data)
+    
 If everything worked out alright, you will get a response like this:
-
-	{
-		"payment_methods" => {},
-		"init_point" => "https://www.mercadopago.com/mlb/checkout/pay?pref_id=abcdefgh-9999-9999-ab99-999999999999",
-		"collector_id" => 123456789,
-		"back_urls" => {
-			"pending"=> "https://www.site.com.br/pending",
-			"success"=> "http://www.site.com.br/success",
-			"failure"=> "http://www.site.com.br/failure"
-		},
-		"sponsor_id" => nil,
-		"expiration_date_from" => nil,
-		"additional_info" => "",
-		"marketplace_fee" => 0,
-		"date_created" => "2012-05-07T20:07:52.293-04:00",
-		"subscription_plan_id" => nil,
-		"id"=> "abcdefgh-9999-9999-ab99-999999999999",
-		"expiration_date_to" => nil,
-		"expires" => false,
-		"external_reference" => "OPERATION-ID-1234",
-		"payer" => {
-			"email" => "comprador@email.com.br",
-			"name" => "João",
-			"surname" => "Silva"
-		},
-		"items" => [
-			{
-				"id" => "Código 123",
-				"currency_id" => "BRL",
-        "title" => "River Plate T-Shirt",
-        "description" => "Red XL T-Shirt",
-				"picture_url" => "http://www.site.com.br/image/123.png",
-				"quantity" => 1,
-				"unit_price" => 10.50
-			}
-		],
-		"client_id" => "963",
-		"marketplace" => "NONE"
-	}
-
+    
+    {
+      "payment_methods" => {},
+      "init_point" => "https://www.mercadopago.com/mlb/checkout/pay?pref_id=abcdefgh-9999-9999-ab99-999999999999",
+      "collector_id" => 123456789,
+      "back_urls" => {
+        "pending"=> "https://www.site.com/pending",
+        "success"=> "http://www.site.com/success",
+        "failure"=> "http://www.site.com/failure"
+      },
+      "sponsor_id" => nil,
+      "expiration_date_from" => nil,
+      "additional_info" => "",
+      "marketplace_fee" => 0,
+      "date_created" => "2012-05-07T20:07:52.293-04:00",
+      "subscription_plan_id" => nil,
+      "id"=> "abcdefgh-9999-9999-ab99-999999999999",
+      "expiration_date_to" => nil,
+      "expires" => false,
+      "external_reference" => "OPERATION-ID-1234",
+      "payer" => {
+        "email" => "buyer@email.com",
+        "name" => "John",
+        "surname" => "Mikel"
+      },
+      "items" => [
+        {
+          "id" => "Código 123",
+          "currency_id" => "BRL",
+          "title" => "Example T-Shirt",
+          "description" => "Red XL T-Shirt",
+          "picture_url" => "http://www.site.com.br/image/123.png",
+          "quantity" => 1,
+          "unit_price" => 10.50
+        }
+      ],
+      "client_id" => "963",
+      "marketplace" => "NONE"
+    }
+    
 ### Payment Status Verification
 
-To check the payment status you will need the payment ID. Only then you
-can call the [MercadoPago IPN](https://developers.mercadopago.com/api-ipn).
-
+To check the payment status you will need the payment ID. Only then you can call the [MercadoPago IPN](https://developers.mercadopago.com/api-ipn).
+    
     # Use the payment ID received on the IPN.
     payment_id = '987654321'
-
-    notification = MercadoPago::Collection.notification(access_token, payment_id)
-  
-You will get a response like this one:    
-
+    
+    notification = mp_client.notification(access_token, payment_id)
+    
+You will get a response like this one:
+    
     {
       "collection" => {
         "id" => 987654321,
@@ -174,18 +150,18 @@ You will get a response like this one:
         "net_received_amount" => 0,
         "marketplace" => "NONE",
         "marketplace_fee" => nil,
-        "reason" => "River Plate T-Shirt",
+        "reason" => "Example T-Shirt",
         "payer" => {
           "id" => 543219876,
-          "first_name" => "João",
-          "last_name" => "Silva",
-          "nickname" => "JOAOSILVA",
+          "first_name" => "John",
+          "last_name" => "Mikel",
+          "nickname" => "JOHNMIKEL",
           "phone" => {
             "area_code" => nil,
             "number" => "551122334455",
             "extension" => nil
           },
-          "email" => "comprador@email.com.br",
+          "email" => "buyer@email.com",
           "identification" => {
             "type" => nil,
             "number" => nil
@@ -193,41 +169,43 @@ You will get a response like this one:
         },
         "collector" => {
           "id" => 123456789,
-          "first_name" => "Manoel",
-          "last_name" => "Recebedor",
+          "first_name" => "Bill",
+          "last_name" => "Receiver",
           "phone" => {
             "area_code" => nil,
             "number" => "1122334455",
             "extension" => nil
           },
-          "email" => "recebedor@email.com.br",
-          "nickname" => "MANOELRECEBEDOR"
+          "email" => "receiver@email.com",
+          "nickname" => "BILLRECEIVER"
         }
       }
     } 
-
+    
 ### Errors
 
 Errors will also be hashes with status code, message and error key.
 
-For example, if you request payment method status for an invalid
-operation, you will see something like this:
-
+For example, if you request payment method status for an invalid operation, you will see something like this:
+    
     {
      "message" => "Resource not found", 
      "error" => "not_found", 
      "status" => 404, 
      "cause" => []
     }
-
+    
 ### Tests
 
 This gem has tests for a few methods. To check if it is working properly, just run:
-
+    
     rake test
-
+    
 Changelog
 ---------
+
+1.0.2
+Changed documentation according to the new client intercace, added a notification method to the client and added a new test.
 
 1.0.1 (thanks etagwerker)
 
@@ -236,7 +214,6 @@ Added client interface, renamed "Mercadopago" to "MercadoPago", translated proje
 0.0.1
 
 First release. It's possible to authenticate with the MercadoPago APIs, create payments and check payment status.
-
 
 Copyright
 ---------

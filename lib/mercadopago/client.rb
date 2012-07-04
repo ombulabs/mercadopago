@@ -2,7 +2,8 @@ module MercadoPago
  
   class AccessError < Exception
   end
-
+  
+  #
   # You can create a Client object to interact with a MercadoPago
   # account through the API.
   #
@@ -10,17 +11,19 @@ module MercadoPago
   # the token as part of its inner state. It will use it to call
   # API methods.
   #
-  # Usage:
+  # Usage example:
   #
-  #     c = Client.new(client_id, client_secret)
-  #     c.create_preference(data)
+  #  mp_client = MercadoPago::Client.new(client_id, client_secret)
+  #  mp_client.create_preference(data)
   #
   class Client
     attr_reader :token
-
+    
+    #
     # Creates an instance and stores the 
     # access_token to make calls to the 
     # MercadoPago API.
+    #
     def initialize(client_id, client_secret)
       response = MercadoPago::Authentication.access_token(client_id, client_secret)
       
@@ -28,20 +31,34 @@ module MercadoPago
         raise AccessError, response["message"]
       end
     end
-
-    # Creates a payment preference according to the
-    # data parameter.
+    
+    #
+    # Creates a payment preference.
+    #
+    # - data: contains the data according to the payment preference will be created.
+    #
     def create_preference(data)
       MercadoPago::Checkout.create_preference(@token, data)
     end
-
-    # Returns the payment preference according to the
-    # id parameter.
+    
+    #
+    # Returns the payment preference.
+    #
+    # - preference_id: the id of the payment preference that will be retrieved.
+    #
     def get_preference(preference_id)
       MercadoPago::Checkout.get_preference(@token, preference_id) 
     end
-
+    
+    #
+    # Retrieves the latest information about a payment.
+    #
+    # - payment_id: the id of the payment to be checked.
+    #
+    def notification(payment_id)
+      MercadoPago::Collection.notification(@token, payment_id)
+    end
+    
   end
-
+  
 end
-
