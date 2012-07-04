@@ -205,6 +205,7 @@ Changelog
 ---------
 
 1.0.2
+
 Changed documentation according to the new client intercace, added a notification method to the client and added a new test.
 
 1.0.1 (thanks etagwerker)
