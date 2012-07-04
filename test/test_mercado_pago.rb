@@ -87,16 +87,13 @@ class TestMercadoPago < MiniTest::Unit::TestCase
     response = mp_client.get_preference(pref_id)
     assert_equal "https://www.mercadopago.com/mla/checkout/pay?pref_id=#{pref_id}", response["init_point"]
   end
-
+  
   def test_that_client_can_get_notification
     payment_id = 419470268
-
-    # The payment_id needs to belong to the account whose credentials were used to create the client.
-    # When we have a payment_id that matches this requirement, uncomment the line bellow and remove the next one.
     mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
-
+    
     response = mp_client.notification(payment_id)
     assert_equal payment_id, response['collection']['id']
   end
-
+  
 end
