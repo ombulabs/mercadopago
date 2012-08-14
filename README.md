@@ -74,7 +74,7 @@ Your request will need a hash to explain what the payment is for. For example:
       }
     }
     
-    payment = mp_client.create_preference(access_token, data)
+    payment = mp_client.create_preference(data)
     
 If everything worked out alright, you will get a response like this:
     
@@ -124,7 +124,7 @@ To check the payment status you will need the payment ID. Only then you can call
     # Use the payment ID received on the IPN.
     payment_id = '987654321'
     
-    notification = mp_client.notification(access_token, payment_id)
+    notification = mp_client.notification(payment_id)
     
 You will get a response like this one:
     
