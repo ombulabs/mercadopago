@@ -85,7 +85,8 @@ module MercadoPago
     #
     def self.search(access_token, search_hash={})
       query = search_hash.map { |e| e.join("=") }.join("&")
-      MercadoPago::Request.wrap_get("/collections/search?access_token=#{access_token}&#{query}", { :accept => 'application/json'})
+      uri = "/collections/search?access_token=#{access_token}&#{query}"
+      MercadoPago::Request.wrap_get(uri, { :accept => 'application/json'})
     end
 
   end

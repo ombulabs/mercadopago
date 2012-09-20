@@ -1,10 +1,11 @@
 # encoding: utf-8
 
 require 'minitest/autorun'
-require 'mercadopago'
+require 'debugger'
+require File.expand_path('../../lib/mercadopago.rb', __FILE__)
 
 class TestMercadoPago < MiniTest::Unit::TestCase
-  
+
   #
   # Valid credentials to be used in the tests.
   #
@@ -12,7 +13,7 @@ class TestMercadoPago < MiniTest::Unit::TestCase
     :client_id      => '8897',
     :client_secret  => 'PC2MoR6baSu75xZnkhLRHoyelnpLkNbh'
   }
-  
+
   #
   # Example payment request.
   #
@@ -40,60 +41,67 @@ class TestMercadoPago < MiniTest::Unit::TestCase
       "failure" => "http://www.site.com/failure"
     }
   }
-  
+
   # With a valid client id and secret (test account)
   def test_that_authentication_returns_access_token
     response = MercadoPago::Authentication.access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
     assert response["access_token"]
   end
-  
+
   # Using fake client id and client secret
   def test_that_authentication_fails_with_wrong_parameters
     response = MercadoPago::Authentication.access_token('fake_client_id', 'fake_client_secret')
     assert_nil response["access_token"]
     assert_equal "invalid_client", response["error"]
   end
-  
+
   # Using fake token
   def test_that_request_fails_with_wrong_token
     response = MercadoPago::Checkout.create_preference('fake_token', {})
     assert_equal "Malformed access_token: fake_token", response["message"]
     assert_equal "bad_request", response["error"]
   end
-  
+
   def test_that_client_initializes_okay_with_valid_details
     mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
     assert mp_client.token
   end
-  
+
   def test_that_client_fails_with_wrong_details
     assert_raises(MercadoPago::AccessError) do
       mp_client = MercadoPago::Client.new('fake_client_id', 'fake_client_secret')
     end
   end
-  
+
   def test_that_client_can_create_payment_preference
     mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
     response = mp_client.create_preference(PAYMENT_REQUEST)
     assert response["init_point"]
   end
-  
+
   def test_that_client_can_get_preference
     mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
-    
+
     response = mp_client.create_preference(PAYMENT_REQUEST)
     assert pref_id = response["id"]
-    
+
     response = mp_client.get_preference(pref_id)
     assert_equal "https://www.mercadopago.com/mla/checkout/pay?pref_id=#{pref_id}", response["init_point"]
   end
-  
+
   def test_that_client_can_get_notification
     payment_id = 419470268
     mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
-    
+
     response = mp_client.notification(payment_id)
     assert_equal payment_id, response['collection']['id']
   end
-  
+
+  def test_collection_search
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    response = MercadoPago::Collection.search(mp_client.token, :status => :pending)
+
+    assert response.has_key?('results')
+  end
+
 end
