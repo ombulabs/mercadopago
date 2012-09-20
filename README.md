@@ -1,29 +1,29 @@
 MercadoPago Gem
 ===============
 
-This is a Ruby client for all the services offered by [MercadoPago](http://www.mercadopago.com). 
+This is a Ruby client for all the services offered by [MercadoPago](http://www.mercadopago.com).
 
 You should read the MercadoPago API documentation before you use this gem. This gem works with hashes and only deals with requests/responses. That's why you will need an understanding of their services.
 
-You can read the documentation of the MercadoPago API here: 
+You can read the documentation of the MercadoPago API here:
 * Portuguese: https://developers.mercadopago.com/integracao-checkout
-* Spanish: https://developers.mercadopago.com/integracion-checkout 
+* Spanish: https://developers.mercadopago.com/integracion-checkout
 
 Installation
 ------------
 
 To install the last version of the gem:
-    
+
     gem install mercadopago
-    
+
 If you are using bundler, add this to your Gemfile:
-    
+
     gem 'mercadopago'
-    
+
 Access Credentials
 ------------------
 
-To use this gem, you will need the client_id and client_secret for a MercadoPago account. 
+To use this gem, you will need the client_id and client_secret for a MercadoPago account.
 
 In any case, this gem will not store this information. In order to find out your MercadoPago credentials, you can go here:
 
@@ -36,19 +36,19 @@ How to use
 ### Client creation
 
 The first thing to do is create a client. The client will authenticate with MercadoPago and will allow you to interact with the MercadoPago API.
-    
+
     # Use your credentials
     client_id = '1234'
     client_secret = 'abcdefghijklmnopqrstuvwxyz'
-    
+
     mp_client = MercadoPago::Client.new(client_id, client_secret)
-    
+
 If any error ocurred while authenticating with MercadoPago, an AccessError will be raised. If nothing goes wrong, no errors are raised and you are ready to use the API.
 
 ### Payment Creation
 
 Your request will need a hash to explain what the payment is for. For example:
-    
+
     data = {
       "external_reference" => "OPERATION-ID-1234",
       "items" => [
@@ -73,11 +73,11 @@ Your request will need a hash to explain what the payment is for. For example:
         "failure"=> "http://www.site.com/failure"
       }
     }
-    
-    payment = mp_client.create_preference(data)
-    
+
+    payment = mp_client.create_preference(access_token, data)
+
 If everything worked out alright, you will get a response like this:
-    
+
     {
       "payment_methods" => {},
       "init_point" => "https://www.mercadopago.com/mlb/checkout/pay?pref_id=abcdefgh-9999-9999-ab99-999999999999",
@@ -116,18 +116,18 @@ If everything worked out alright, you will get a response like this:
       "client_id" => "963",
       "marketplace" => "NONE"
     }
-    
+
 ### Payment Status Verification
 
 To check the payment status you will need the payment ID. Only then you can call the [MercadoPago IPN](https://developers.mercadopago.com/api-ipn).
-    
+
     # Use the payment ID received on the IPN.
     payment_id = '987654321'
-    
-    notification = mp_client.notification(payment_id)
-    
+
+    notification = mp_client.notification(access_token, payment_id)
+
 You will get a response like this one:
-    
+
     {
       "collection" => {
         "id" => 987654321,
@@ -180,29 +180,33 @@ You will get a response like this one:
           "nickname" => "BILLRECEIVER"
         }
       }
-    } 
-    
+    }
+
 ### Errors
 
 Errors will also be hashes with status code, message and error key.
 
 For example, if you request payment method status for an invalid operation, you will see something like this:
-    
+
     {
-     "message" => "Resource not found", 
-     "error" => "not_found", 
-     "status" => 404, 
+     "message" => "Resource not found",
+     "error" => "not_found",
+     "status" => 404,
      "cause" => []
     }
-    
+
 ### Tests
 
 This gem has tests for a few methods. To check if it is working properly, just run:
-    
+
     rake test
-    
+
 Changelog
 ---------
+
+1.0.3
+
+Added Collection#search basic support.
 
 1.0.2
 
