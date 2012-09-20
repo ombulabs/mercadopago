@@ -1,9 +1,9 @@
-require 'mercadopago/version'
-require 'mercadopago/request'
-require 'mercadopago/authentication'
-require 'mercadopago/checkout'
-require 'mercadopago/collection'
-require 'mercadopago/client'
+require_relative './mercadopago/version'
+require_relative './mercadopago/request'
+require_relative './mercadopago/authentication'
+require_relative './mercadopago/checkout'
+require_relative './mercadopago/collection'
+require_relative './mercadopago/client'
 
 module MercadoPago
 end
