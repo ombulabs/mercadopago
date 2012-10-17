@@ -96,4 +96,15 @@ class TestMercadoPago < MiniTest::Unit::TestCase
     assert_equal payment_id, response['collection']['id']
   end
   
+  
+  def test_that_client_can_search
+    local_reference = 'OPERATION-ID-1234'
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    
+    search_hash = {:external_reference => local_reference}
+    response = mp_client.search(search_hash)
+    results = response['results']
+    assert_equal 1, results.length
+    assert_equal payment_id, results[0]['collection']['external_reference']
+  end
 end
