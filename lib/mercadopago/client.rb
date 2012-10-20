@@ -59,6 +59,14 @@ module MercadoPago
       MercadoPago::Collection.notification(@token, payment_id)
     end
     
+    #
+    # Search for collections that matches some of the search hash criteria.
+    #
+    # - search_hash: the search hash to find collections
+    #
+    def search(search_hash)
+      MercadoPago::Collection.search(@token, search_hash)
+    end
   end
   
 end
