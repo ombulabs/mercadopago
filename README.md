@@ -181,7 +181,100 @@ You will get a response like this one:
         }
       }
     } 
+
+### Search in the collections
+
+To search over the collections (payments that you may be processing) you need to create a hash with the params that you want to search for an send it to the search method of the client instance
     
+    # Create a hash to search for
+    search_hash = {:external_reference => 'OPERATION-ID-1234'}
+    
+    search = mp_client.search(search_hash)
+    
+You will get a response like this one:
+
+    {
+      "results"=>[{
+        "collection" => {
+          "marketplace"=>"NONE", 
+          "sponsor_id"=>nil, 
+          "status" => "approved",
+          "status_detail" => "approved",
+          "payer" => {
+            "id" => 543219876,
+            "first_name" => "John",
+            "last_name" => "Mikel",
+            "nickname" => "JOHNMIKEL",
+            "phone" => {
+              "area_code" => nil,
+              "number" => "551122334455",
+              "extension" => nil
+            },
+            "email" => "buyer@email.com",
+            "identification" => {
+              "type" => nil,
+              "number" => nil
+            }
+          },
+          "currency_id" => "ARS",
+          "external_reference" => "OPERATION-ID-1234",
+          "transaction_amount" => 10.50,
+          "shipping_cost" => 0,
+          "total_paid_amount" => 10.50,
+          "id" => 987654321,
+          "status_code"=>nil,
+          "reason" => "Example T-Shirt",
+          "collector_id"=>99678614,
+          "date_created" => "2012-05-05T14:22:43Z",
+          "last_modified" => "2012-05-05T14:35:13Z",
+          "date_approved" => "2012-05-05T14:22:43Z",
+          "money_release_date" => "2012-05-19T14:22:43Z",
+          "released"=>"yes",
+          "operation_type" => "regular_payment",
+          "payment_type" => "credit_card",
+          "site_id"=>"MLA"
+        }
+      }], 
+      "paging"=>{
+        "total"=>1, 
+        "limit"=>30, 
+        "offset"=>0
+      }
+    }
+
+And the parameters thay could be used in the search hash are:
+
+    id => Payment identifier
+    site_id => Country identifier: Argentina: MLA; Brasil: MLB.
+    date_created => Creation date. Ej: range=date_created&begin_date=NOW-1DAYS&end_date=NOW (Ver ISO-8601).
+    date_approved => Approval date. Ej: range=date_approved&begin_date=NOW-1DAYS&end_date=NOW (Ver ISO-8601).
+    last_modified => Last modified date. Ej: range=last_modified&begin_date=NOW-1DAYS&end_date=NOW (Ver ISO-8601).
+    money_release_date => Date of the payment's release. Ej: range=money_release_date&begin_date=NOW-1DAYS&end_date=NOW (Ver ISO-8601).
+    payer_id => Buyer's identifier.
+    reason => Description of what's being payed.
+    transaction_amount => Amount of the transaction.
+    currency_id => Currency type. Argentina: ARS (peso argentino) ó USD (Dólar estadounidense); Brasil: BRL (Real).
+    external_reference => Field used by the seller as aditional reference.
+    mercadopago_fee => MercadoPago's comission fee.
+    net_received_amount => Amount payable to the seller without mercadopago_fee.
+    total_paid_amount => Obtained by adding: transaction_amount, shipping_cost and the amount payed by the buyer (including credit card's financing).
+    shipping_cost => Shipping cost.
+    status =>
+        pending: The payment process is incomplete.
+        approved: The payment has been credited.
+        in_process: The payment is under review.
+        rejected: The payment has been rejected.
+        cancelled: The payment is canceled after timeout or by either party.
+        refunded: The payment has been refunded.
+        in_mediation: The payment is in dispute.
+    status_detail => Payment status detail.
+    released => When the amount is available or not. Possible values are yes or no.
+    operation_type =>
+        regular_payment: A payment.
+        money_transfer: A money wire.
+        recurring_payment: Active subscription recurring payment.
+        subscription_payment: Subscription fee.
+
 ### Errors
 
 Errors will also be hashes with status code, message and error key.
