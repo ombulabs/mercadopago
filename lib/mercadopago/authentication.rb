@@ -13,21 +13,17 @@ module MercadoPago
     # - client_secret
     #
     def self.access_token(client_id, client_secret)
-
-      payload = { :grant_type => 'client_credentials', :client_id => client_id, :client_secret => client_secret }
-      headers = { :content_type => 'application/x-www-form-urlencoded', :accept => 'application/json' }
+      payload = { grant_type: 'client_credentials', client_id: client_id, client_secret: client_secret }
+      headers = { content_type: 'application/x-www-form-urlencoded', accept: 'application/json' }
 
       MercadoPago::Request.wrap_post('/oauth/token', payload, headers)
-
     end
 
     #
     # TODO
     #
     def refresh_access_token
-
       # TODO
-
     end
 
   end

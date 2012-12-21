@@ -5,6 +5,9 @@ module MercadoPago
 
   module Request
 
+    class ClientError < Exception
+    end
+
     #
     # This URL is the base for all API calls.
     #
@@ -18,10 +21,8 @@ module MercadoPago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.wrap_post(path, payload, headers = {})
-
       raise ClientError('No data given') if payload.nil? or payload.empty?
       make_request(:post, path, payload, headers)
-
     end
 
     #
@@ -31,9 +32,7 @@ module MercadoPago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.wrap_get(path, headers = {})
-
       make_request(:get, path, nil, headers)
-
     end
 
     #
@@ -45,19 +44,12 @@ module MercadoPago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.make_request(type, path, payload = nil, headers = {})
+      args = [type, "#{MERCADOPAGO_URL}#{path}", payload, headers].compact
+      response = RestClient.send *args
 
-      begin
-        args = [type, "#{MERCADOPAGO_URL}#{path}", payload, headers].compact
-        response = RestClient.send *args
-
-        JSON.load(response)
-      rescue Exception => e
-        JSON.load(e.response)
-      end
-
-    end
-
-    class ClientError < Exception
+      JSON.load(response)
+    rescue Exception => e
+      JSON.load(e.response)
     end
 
   end
