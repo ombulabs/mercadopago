@@ -51,6 +51,16 @@ class TestMercadoPago < MiniTest::Unit::TestCase
     assert_equal "invalid_client", response['error']
   end
 
+  def test_that_refresh_token_works
+    auth = MercadoPago::Authentication.access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    refresh = MercadoPago::Authentication.refresh_access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret], auth['refresh_token'])
+
+    assert refresh['access_token']
+    assert refresh['refresh_token']
+    assert refresh['access_token'] != auth['access_token']
+    assert refresh['refresh_token'] != auth['refresh_token']
+  end
+
   # Using fake token
   def test_that_request_fails_with_wrong_token
     response = MercadoPago::Checkout.create_preference('fake_token', {})
@@ -60,7 +70,7 @@ class TestMercadoPago < MiniTest::Unit::TestCase
 
   def test_that_client_initializes_okay_with_valid_details
     mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
-    assert mp_client.token
+    assert mp_client.access_token
   end
 
   def test_that_client_fails_with_wrong_details

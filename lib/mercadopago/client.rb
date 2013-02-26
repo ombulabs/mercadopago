@@ -22,18 +22,27 @@ module MercadoPago
   #
   class Client
 
-    attr_reader :token
+    attr_reader :access_token, :refresh_token
 
     #
     # Creates an instance and stores the access_token to make calls to the
     # MercadoPago API.
     #
+    # - client_id
+    # - client_secret
+    #
     def initialize(client_id, client_secret)
-      response = MercadoPago::Authentication.access_token(client_id, client_secret)
+      load_tokens MercadoPago::Authentication.access_token(client_id, client_secret)
+    end
 
-      unless @token = response['access_token']
-        raise AccessError, response['message']
-      end
+    #
+    # Refreshes an access token.
+    #
+    # - client_id
+    # - client_secret
+    #
+    def refresh_access_token(client_id, client_secret)
+      load_tokens MercadoPago::Authentication.refresh_access_token(client_id, client_secret, @refresh_token)
     end
 
     #
@@ -42,7 +51,7 @@ module MercadoPago
     # - data: contains the data according to the payment preference that will be created.
     #
     def create_preference(data)
-      MercadoPago::Checkout.create_preference(@token, data)
+      MercadoPago::Checkout.create_preference(@access_token, data)
     end
 
     #
@@ -51,7 +60,7 @@ module MercadoPago
     # - preference_id: the id of the payment preference that will be retrieved.
     #
     def get_preference(preference_id)
-      MercadoPago::Checkout.get_preference(@token, preference_id)
+      MercadoPago::Checkout.get_preference(@access_token, preference_id)
     end
 
     #
@@ -60,7 +69,7 @@ module MercadoPago
     # - payment_id: the id of the payment to be checked.
     #
     def notification(payment_id)
-      MercadoPago::Collection.notification(@token, payment_id)
+      MercadoPago::Collection.notification(@access_token, payment_id)
     end
 
     #
@@ -69,7 +78,28 @@ module MercadoPago
     # - search_hash: the search hash to find collections.
     #
     def search(search_hash)
-      MercadoPago::Collection.search(@token, search_hash)
+      MercadoPago::Collection.search(@access_token, search_hash)
+    end
+
+    #
+    # Private methods.
+    #
+    private
+
+    #
+    # Loads the tokens from the authentication hash.
+    #
+    # - auth: the authentication hash returned by MercadoPago.
+    #
+    def load_tokens(auth)
+      mandatory_keys = %w{ access_token refresh_token }
+
+      if (auth.keys & mandatory_keys) == mandatory_keys
+        @access_token   = auth['access_token']
+        @refresh_token  = auth['refresh_token']
+      else
+        raise AccessError, auth['message']
+      end
     end
 
   end

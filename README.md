@@ -303,6 +303,10 @@ This gem has tests for a few methods. To check if it is working properly, just r
 Changelog
 ---------
 
+2.0.1
+
+Added the refresh_access_token method to the authentication module.
+
 2.0.0 (thanks leanucci and cavi21)
 
 Implemented basic access to the collection search method. Changed the test credentials. Using Ruby 1.9 hash format. Added documentation for collection search.
