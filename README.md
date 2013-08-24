@@ -1,6 +1,8 @@
 MercadoPago Gem
 ===============
 
+Developed and maintained by the team of [Kauplus](http://www.kauplus.com).
+
 This is a Ruby client for all the services offered by [MercadoPago](http://www.mercadopago.com).
 
 You should read the MercadoPago API documentation before you use this gem. This gem works with hashes and only deals with requests/responses. That's why you will need an understanding of their services.
