@@ -1,4 +1,4 @@
-require 'rest-client'
+require 'faraday'
 require 'json'
 
 module MercadoPago
@@ -44,10 +44,17 @@ module MercadoPago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.make_request(type, path, payload = nil, headers = {})
-      args = [type, "#{MERCADOPAGO_URL}#{path}", payload, headers].compact
-      response = RestClient.send *args
+      args = [type, MERCADOPAGO_URL, path, payload, headers].compact
 
-      JSON.load(response)
+      connection = Faraday.new(MERCADOPAGO_URL, ssl: { version: :SSLv3 })
+
+      response = connection.send(type) do |req|
+        req.url path
+        req.headers = headers
+        req.body = payload
+      end
+
+      JSON.load(response.body)
     rescue Exception => e
       JSON.load(e.response)
     end
