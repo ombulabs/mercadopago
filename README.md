@@ -305,6 +305,10 @@ This gem has tests for a few methods. To check if it is working properly, just r
 Changelog
 ---------
 
+2.0.2
+
+Request uses Faraday HTTP client instead of RestClient for better SSL support.
+
 2.0.1
 
 Added the refresh_access_token method to the authentication module.
