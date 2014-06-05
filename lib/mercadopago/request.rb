@@ -56,9 +56,12 @@ module MercadoPago
 
       JSON.load(response.body)
     rescue Exception => e
-      JSON.load(e.response)
+      if e.respond_to?(:response)
+        JSON.load(e.response)
+      else
+        raise e
+      end
     end
-
   end
 
 end
