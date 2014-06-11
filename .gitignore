@@ -9,3 +9,6 @@ pkg/*
 ## TEXTMATE
 *.tmproj
 tmtags
+
+## rvm/rbenv
+.ruby-version
