@@ -63,6 +63,26 @@ module MercadoPago
       MercadoPago::Checkout.get_preference(@access_token, preference_id)
     end
 
+	#
+    # Creates a recurring payment.
+    #
+    # - data: contains the data according to the recurring payment that will be created.
+    #
+    def create_preapproval_payment(data)
+      MercadoPago::Checkout.create_preapproval_payment(@access_token, data)
+    end
+
+    #
+    # Returns the recurring payment.
+    #
+    # - preapproval_id: the id of the preapproval payment preference that will be retrieved.
+    #
+    def get_preapproval_payment(preapproval_id)
+      MercadoPago::Checkout.get_preapproval_payment(@access_token, preapproval_id)
+    end
+
+
+
     #
     # Retrieves the latest information about a payment.
     #

@@ -29,6 +29,20 @@ module MercadoPago
       MercadoPago::Request.wrap_get("/checkout/preferences/#{preference_id}?access_token=#{access_token}")
     end
 
+
+    def self.create_preapproval_payment(access_token, data)
+      payload = JSON.generate(data)
+      headers = { content_type: 'application/json', accept: 'application/json' }
+
+      MercadoPago::Request.wrap_post("/preapproval?access_token=#{access_token}", payload, headers)
+    end
+
+    def self.get_preapproval_payment(access_token, preapproval_id)
+      headers = { accept: 'application/json' }
+      MercadoPago::Request.wrap_get("/preapproval/#{preapproval_id}?access_token=#{access_token}")
+    end
+
+
     #
     # TODO
     #

@@ -283,6 +283,82 @@ And the parameters thay could be used in the search hash are:
         recurring_payment: Active subscription recurring payment.
         subscription_payment: Subscription fee.
 
+### Recurring Payment Creation
+
+Your request will need a hash to explain what the recurring payment is for. For example:
+
+    data = {
+    	payer_email: "xxx@test.com",
+        back_url: "http://www.site.com/return",
+        reason: "Monthly Magazine",
+        external_reference: "OPERATION-ID-1234",
+        	auto_recurring: {
+                        frequency: 1,
+                        frequency_type: "months",
+                        transaction_amount: 12.55,
+                        currency_id: "BRL"
+                }
+    }
+
+If everything worked out alright, you will get a response like this:
+
+	{
+	   "id"=>"f8ad8asd8asd98asd89add980", 
+	   "payer_id"=>131231333, 
+	   "payer_email"="xxx@test.com", 
+	   "back_url"=>"http://www.site.com/return", 
+	   "collector_id"=>3131231231, 
+	   "application_id"=>83818921839, 
+	   "status"=>"authorized", 
+	   "reason"=>"Monthly Magazine", 
+	   "external_reference"=>"OPERATION-ID-1234", 
+	   "date_created"=>"2014-08-03T20:47:53.970-04:00", 
+	   "last_modified"=>"2014-08-03T20:51:00.264-04:00", 
+	   "init_point"=>"https://www.mercadopago.com/mlb/debits/new?preapproval_id=8ad8asd8ada8da8dad88sa", 
+	   "auto_recurring"=> 
+	   {
+		"frequency"=>1, 
+		"frequency_type"=>"months", 
+		"transaction_amount"=>12.55, 
+		"currency_id"=>"BRL"
+	   }
+	}
+
+### Recurring Payment Status Verification
+
+To check the recurring payment status you will need the preapproval ID. 
+
+    # Use the preapproval ID received on status.
+    preapproval_id = '987654321'
+
+    return = mp_client.get_preapproval_payment(preapproval_id)
+
+You will get a response like this one:
+
+        {
+           "id"=>"f8ad8asd8asd98asd89add980",
+           "payer_id"=>131231333,
+           "payer_email"="xxx@test.com",
+           "back_url"=>"http://www.site.com/return",
+           "collector_id"=>3131231231,
+           "application_id"=>83818921839,
+           "status"=>"authorized",
+           "reason"=>"Monthly Magazine",
+           "external_reference"=>"OPERATION-ID-1234",
+           "date_created"=>"2014-08-03T20:47:53.970-04:00",
+           "last_modified"=>"2014-08-03T20:51:00.264-04:00",
+           "init_point"=>"https://www.mercadopago.com/mlb/debits/new?preapproval_id=8ad8asd8ada8da8dad88sa",
+           "auto_recurring"=>
+           {
+                "frequency"=>1,
+                "frequency_type"=>"months",
+                "transaction_amount"=>12.55,
+                "currency_id"=>"BRL"
+           }
+        }
+
+
+
 ### Errors
 
 Errors will also be hashes with status code, message and error key.
@@ -304,6 +380,10 @@ This gem has tests for a few methods. To check if it is working properly, just r
 
 Changelog
 ---------
+
+2.0.3
+
+Added functionality to create and get recurring payments.
 
 2.0.2
 
