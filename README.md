@@ -296,7 +296,7 @@ Your request will need a hash to explain what the recurring payment is for. For 
                         frequency: 1,
                         frequency_type: "months",
                         transaction_amount: 12.55,
-                        currency_id: "BRL"
+        	                currency_id: "BRL"
                 }
     }
 
@@ -337,27 +337,28 @@ To check the recurring payment status you will need the preapproval ID. Only the
 You will get a response like this one:
 
 Status code: 200 OK
-{
-	"id": "preapproval_id",
-	"payer_id": 12345,
-	"payer_email": "payeremail@email.com",
-	"back_url": "https://www.mysite.com/afterAuth",
-	"collector_id": 12345,
-	"application_id": 10648,
-	"status": "authorized",
-	"init_point": "https://www.mercadopago.com/mlb/debits/new?preapproval_id=preapproval_id",
-	"sandbox_init_point": "https://www.mercadopago.com/mlb/debits/new?preapproval_id=preapproval_id",
-	"external_reference": "OP-1234",
-	"reason": "Detailed description about your service",
-	"auto_recurring": {
-		"frequency": 1,
-		"frequency_type": "months",
-		"transaction_amount": 60,
-		"currency_id": "BRL"
-	},
-	"date_created": "2012-08-31T11:50:26.648-04:00",
-	"last_modified": "2012-08-31T11:50:26.648-04:00"
-}
+
+	{
+		"id": "preapproval_id",
+		"payer_id": 12345,
+		"payer_email": "payeremail@email.com",
+		"back_url": "https://www.mysite.com/afterAuth",
+		"collector_id": 12345,
+		"application_id": 10648,
+		"status": "authorized",
+		"init_point": "https://www.mercadopago.com/mlb/debits/new?preapproval_id=preapproval_id",
+		"sandbox_init_point": "https://www.mercadopago.com/mlb/debits/new?preapproval_id=preapproval_id",
+		"external_reference": "OP-1234",
+		"reason": "Detailed description about your service",
+		"auto_recurring": {
+			"frequency": 1,
+			"frequency_type": "months",
+			"transaction_amount": 60,
+			"currency_id": "BRL"
+		},
+		"date_created": "2012-08-31T11:50:26.648-04:00",
+		"last_modified": "2012-08-31T11:50:26.648-04:00"
+	}
 
 
 
