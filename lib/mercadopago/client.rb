@@ -68,8 +68,13 @@ module MercadoPago
     #
     # - payment_id: the id of the payment to be checked.
     #
-    def notification(payment_id)
-      MercadoPago::Collection.notification(@access_token, payment_id)
+    def notification(payment_id, topic = 'payment')
+      case topic
+        when 'merchant_order'
+          MercadoPago::MerchantOrder.notification(@access_token, payment_id)
+        else # 'payment'
+          MercadoPago::Collection.notification(@access_token, payment_id)
+      end
     end
 
     #
