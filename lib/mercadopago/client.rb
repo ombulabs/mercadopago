@@ -93,6 +93,15 @@ module MercadoPago
     end
 
     #
+    # Retrieves the latest information about the recurring payment.
+    #
+    # - preapproval_id: the id of the recurring payment to be checked.
+    #
+    def notification_preapproval(preapproval_id)
+      MercadoPago::Collection.notification_preapproval(@access_token, preapproval_id)
+    end
+
+    #
     # Searches for collections that matches some of the search hash criteria.
     #
     # - search_hash: the search hash to find collections.
