@@ -325,7 +325,7 @@ If everything worked out alright, you will get a response like this:
 	}
   
 
-### Recurring Payment Status Verification by IPN
+### Recurring Payment Status Verification
 
 To check the recurring payment status you will need the preapproval ID. Only then you can call the [MercadoPago IPN](https://developers.mercadopago.com/beta/documentacao/notificacoes-de-pagamentos#!/get-preapproval).
 
@@ -337,19 +337,19 @@ To check the recurring payment status you will need the preapproval ID. Only the
 You will get a response like this one:
 
   {
-    "preapproval_id"=> "preapproval_id", 
-    "id"=> "authorized_payment_id",
-    "type"=> "online",
-    "status"=> "processed",
-    "date_created"=> "2014-05-22T11:53:37.074-04:00",
-    "last_modified"=> "2014-05-22T11:53:37.074-04:00",
-    "transaction_amount"=> 150,
-    "currency_id"=> "BRL",
-    "payment"=> 
+    "preapproval_id": "preapproval_id", 
+    "id": "authorized_payment_id",
+    "type": "online",
+    "status": "processed",
+    "date_created": "2014-05-22T11:53:37.074-04:00",
+    "last_modified": "2014-05-22T11:53:37.074-04:00",
+    "transaction_amount": 150,
+    "currency_id": "BRL",
+    "payment": 
     {
-      "id"=> "payment_id",
-      "status"=> "approved",
-      "status_detail"=> "accredited"
+      "id": "payment_id",
+      "status": "approved",
+      "status_detail": "accredited"
     }
   }
 
