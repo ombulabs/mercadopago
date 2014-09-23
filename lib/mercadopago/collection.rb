@@ -14,12 +14,18 @@ module MercadoPago
     end
 
     # - access_token: an access_token of the MercadoPago account associated with the payment to be checked.
+    # - authorized_id: the id of the authorized to be checked.
+    #
+    def self.notification_authorized(access_token, authorized_id)
+      MercadoPago::Request.wrap_get("/authorized_payments/#{authorized_id}?access_token=#{access_token}", { accept: 'application/json' })      
+    end
+    
+    # - access_token: an access_token of the MercadoPago account associated with the payment to be checked.
     # - preapproval_id: the id of the recurring payment to be checked.
     #
     def self.notification_preapproval(access_token, preapproval_id)
-      MercadoPago::Request.wrap_get("/authorized_payments/#{preapproval_id}?access_token=#{access_token}", { accept: 'application/json' })      
+      MercadoPago::Request.wrap_get("/preapproval/#{preapproval_id}?access_token=#{access_token}", { accept: 'application/json' })      
     end
-
     #
     # Receives an access_token and a search_hash and returns matching payments, according to the search params.
     #

@@ -95,6 +95,15 @@ module MercadoPago
     #
     # Retrieves the latest information about the recurring payment after authorized.
     #
+    # - authorized_id: the id of the recurring payment authorized to be checked.
+    #
+    def notification_authorized(authorized_id)
+      MercadoPago::Collection.notification_authorized(@access_token, authorized_id)
+    end
+
+    #
+    # Retrieves the latest information about the recurring payment.
+    #
     # - preapproval_id: the id of the recurring payment to be checked.
     #
     def notification_preapproval(preapproval_id)
