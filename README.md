@@ -338,29 +338,21 @@ You will get a response like this one:
 
 Status code: 200 OK
 
-	{
-		"id": "preapproval_id",
-		"payer_id": 12345,
-		"payer_email": "payeremail@email.com",
-		"back_url": "https://www.mysite.com/afterAuth",
-		"collector_id": 12345,
-		"application_id": 10648,
-		"status": "authorized",
-		"init_point": "https://www.mercadopago.com/mlb/debits/new?preapproval_id=preapproval_id",
-		"sandbox_init_point": "https://www.mercadopago.com/mlb/debits/new?preapproval_id=preapproval_id",
-		"external_reference": "OP-1234",
-		"reason": "Detailed description about your service",
-		"auto_recurring": {
-			"frequency": 1,
-			"frequency_type": "months",
-			"transaction_amount": 60,
-			"currency_id": "BRL"
-		},
-		"date_created": "2012-08-31T11:50:26.648-04:00",
-		"last_modified": "2012-08-31T11:50:26.648-04:00"
-	}
-
-
+  {
+      "preapproval_id": "preapproval_id",
+      "id": "authorized_payment_id",
+      "type": "online",
+      "status": "processed",
+      "date_created": "2014-05-22T11:53:37.074-04:00",
+      "last_modified": "2014-05-22T11:53:37.074-04:00",
+      "transaction_amount": 150,
+      "currency_id": "BRL",
+      "payment": {
+          "id": "payment_id",
+          "status": "approved",
+          "status_detail": "accredited"
+      }
+  }
 
 ### Errors
 
@@ -386,7 +378,7 @@ Changelog
 
 2.0.4
 
-Added a notification to recurring payments method in the client.
+Added a notification to recurring payments after authorized method in the client.
 
 2.0.3
 

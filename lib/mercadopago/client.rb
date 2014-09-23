@@ -93,7 +93,7 @@ module MercadoPago
     end
 
     #
-    # Retrieves the latest information about the recurring payment.
+    # Retrieves the latest information about the recurring payment after authorized.
     #
     # - preapproval_id: the id of the recurring payment to be checked.
     #
