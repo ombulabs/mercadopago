@@ -339,19 +339,19 @@ You will get a response like this one:
 Status code: 200 OK
 
   {
-      "preapproval_id": "preapproval_id",
-      "id": "authorized_payment_id",
-      "type": "online",
-      "status": "processed",
-      "date_created": "2014-05-22T11:53:37.074-04:00",
-      "last_modified": "2014-05-22T11:53:37.074-04:00",
-      "transaction_amount": 150,
-      "currency_id": "BRL",
-      "payment": {
-          "id": "payment_id",
-          "status": "approved",
-          "status_detail": "accredited"
-      }
+    "preapproval_id": "preapproval_id",
+    "id": "authorized_payment_id",
+    "type": "online",
+    "status": "processed",
+    "date_created": "2014-05-22T11:53:37.074-04:00",
+    "last_modified": "2014-05-22T11:53:37.074-04:00",
+    "transaction_amount": 150,
+    "currency_id": "BRL",
+    "payment": {
+      "id": "payment_id",
+      "status": "approved",
+      "status_detail": "accredited"
+    }
   }
 
 ### Errors
