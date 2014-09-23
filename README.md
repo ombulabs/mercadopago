@@ -336,10 +336,8 @@ To check the recurring payment status you will need the preapproval ID. Only the
 
 You will get a response like this one:
 
-Status code: 200 OK
-
   {
-    "preapproval_id": "preapproval_id",
+    "preapproval_id": "preapproval_id", 
     "id": "authorized_payment_id",
     "type": "online",
     "status": "processed",
