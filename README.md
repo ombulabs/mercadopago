@@ -288,11 +288,11 @@ And the parameters thay could be used in the search hash are:
 Your request will need a hash to explain what the recurring payment is for. For example:
 
     data = {
-      payer_email: "xxx@test.com",
+    	payer_email: "xxx@test.com",
         back_url: "http://www.site.com/return",
         reason: "Monthly Magazine",
         external_reference: "OPERATION-ID-1234",
-          auto_recurring: {
+        	auto_recurring: {
                         frequency: 1,
                         frequency_type: "months",
                         transaction_amount: 12.55,
@@ -347,8 +347,7 @@ Status code: 200 OK
     "last_modified": "2014-05-22T11:53:37.074-04:00",
     "transaction_amount": 150,
     "currency_id": "BRL",
-    "payment": 
-    {
+    "payment": {
       "id": "payment_id",
       "status": "approved",
       "status_detail": "accredited"
