@@ -64,16 +64,18 @@ module MercadoPago
     end
 
     #
-    # Retrieves the latest information about a payment.
+    # Retrieves the latest information about a payment or a merchant order.
     #
-    # - payment_id: the id of the payment to be checked.
+    # - entity_id: the id of the entity (paymento or merchant order) to be checked.
     #
-    def notification(payment_id, topic = 'payment')
-      case topic
-        when 'merchant_order'
-          MercadoPago::MerchantOrder.notification(@access_token, payment_id)
-        else # 'payment'
-          MercadoPago::Collection.notification(@access_token, payment_id)
+    def notification(entity_id, topic = 'payment')
+      topic = topic.to_s
+
+      case topic.to_s
+      when 'merchant_order'
+        MercadoPago::MerchantOrder.notification(@access_token, entity_id)
+      else # 'payment'
+        MercadoPago::Collection.notification(@access_token, entity_id)
       end
     end
 
