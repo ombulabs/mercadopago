@@ -69,8 +69,6 @@ module MercadoPago
     # - entity_id: the id of the entity (paymento or merchant order) to be checked.
     #
     def notification(entity_id, topic = 'payment')
-      topic = topic.to_s
-
       case topic.to_s
       when 'merchant_order'
         MercadoPago::MerchantOrder.notification(@access_token, entity_id)
