@@ -5,6 +5,7 @@ require "mercadopago/version"
 Gem::Specification.new do |s|
   s.name        = "mercadopago"
   s.version     = MercadoPago::VERSION
+  s.licenses    = ['MIT']
   s.authors     = ["Kauplus Social Commerce", "Ombu Shop, Tu Tienda Online"]
   s.email       = ["suporte@kauplus.com.br"]
   s.homepage    = "https://github.com/kauplus/mercadopago"

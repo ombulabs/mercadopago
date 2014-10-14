@@ -16,7 +16,7 @@ You can read the documentation of the MercadoPago API here:
 Installation
 ------------
 
-mercadopago 2.0.0 needs Ruby 1.9. Version 1.0.2 runs fine with Ruby 1.8.
+mercadopago 2.0.0+ needs Ruby 1.9+. Version 1.0.2 runs fine with Ruby 1.8.
 
 To install the last version of the gem:
 
@@ -288,42 +288,41 @@ And the parameters thay could be used in the search hash are:
 Your request will need a hash to explain what the recurring payment is for. For example:
 
     data = {
-    	payer_email: "xxx@test.com",
-        back_url: "http://www.site.com/return",
-        reason: "Monthly Magazine",
-        external_reference: "OPERATION-ID-1234",
-        	auto_recurring: {
-                        frequency: 1,
-                        frequency_type: "months",
-                        transaction_amount: 12.55,
-        	                currency_id: "BRL"
-                }
+      payer_email:        "xxx@test.com",
+      back_url:           "http://www.site.com/return",
+      reason:             "Monthly Magazine",
+      external_reference: "OPERATION-ID-1234",
+      auto_recurring: {
+        frequency:          1,
+        frequency_type:     "months",
+        transaction_amount: 12.55,
+        currency_id:        "BRL"
+      }
     }
 
 If everything worked out alright, you will get a response like this:
 
-	{
-	   "id"=>"f8ad8asd8asd98asd89add980", 
-	   "payer_id"=>131231333, 
-	   "payer_email"="xxx@test.com", 
-	   "back_url"=>"http://www.site.com/return", 
-	   "collector_id"=>3131231231, 
-	   "application_id"=>83818921839, 
-	   "status"=>"authorized", 
-	   "reason"=>"Monthly Magazine", 
-	   "external_reference"=>"OPERATION-ID-1234", 
-	   "date_created"=>"2014-08-03T20:47:53.970-04:00", 
-	   "last_modified"=>"2014-08-03T20:51:00.264-04:00", 
-	   "init_point"=>"https://www.mercadopago.com/mlb/debits/new?preapproval_id=8ad8asd8ada8da8dad88sa", 
-	   "auto_recurring"=> 
-	   {
-		"frequency"=>1, 
-		"frequency_type"=>"months", 
-		"transaction_amount"=>12.55, 
-		"currency_id"=>"BRL"
-	   }
-	}
-  
+    {
+       "id"                 => "f8ad8asd8asd98asd89add980",
+       "payer_id"           => 131231333,
+       "payer_email"        => "xxx@test.com",
+       "back_url"           => "http://www.site.com/return",
+       "collector_id"       => 3131231231,
+       "application_id"     => 83818921839,
+       "status"             => "authorized",
+       "reason"             => "Monthly Magazine",
+       "external_reference" => "OPERATION-ID-1234",
+       "date_created"       => "2014-08-03T20:47:53.970-04:00",
+       "last_modified"      => "2014-08-03T20:51:00.264-04:00",
+       "init_point"         => "https://www.mercadopago.com/mlb/debits/new?preapproval_id=8ad8asd8ada8da8dad88sa",
+       "auto_recurring" => {
+        "frequency"          => 1,
+        "frequency_type"     => "months",
+        "transaction_amount" => 12.55,
+        "currency_id"        => "BRL"
+       }
+    }
+
 
 ### Recurring Payment Status Verification Next Recurring Payments by IPN
 
@@ -339,18 +338,18 @@ You will get a response like this one:
 Status code: 200 OK
 
     {
-        "preapproval_id": "preapproval_id",
-        "id": "authorized_payment_id",
-        "type": "online",
-        "status": "processed",
-        "date_created": "2014-05-22T11:53:37.074-04:00",
-        "last_modified": "2014-05-22T11:53:37.074-04:00",
+        "preapproval_id":     "preapproval_id",
+        "id":                 "authorized_payment_id",
+        "type":               "online",
+        "status":             "processed",
+        "date_created":       "2014-05-22T11:53:37.074-04:00",
+        "last_modified":      "2014-05-22T11:53:37.074-04:00",
         "transaction_amount": 150,
-        "currency_id": "BRL",
-        "payment": 
+        "currency_id":        "BRL",
+        "payment":
         {
-            "id": "payment_id",
-            "status": "approved",
+            "id":            "payment_id",
+            "status":        "approved",
             "status_detail": "accredited"
         }
     }
@@ -369,25 +368,24 @@ You will get a response like this one:
 Status code: 200 OK
 
     {
-      "id": "preapproval_id",
-      "payer_id": 12345,
-      "payer_email": "payeremail@email.com",
-      "back_url": "https://www.mysite.com/afterAuth",
-      "collector_id": 12345,
-      "application_id": 10648,
-      "status": "authorized",
-      "init_point": "https://www.mercadopago.com/mlb/debits/new?preapproval_id=preapproval_id",
+      "id":                 "preapproval_id",
+      "payer_id":           12345,
+      "payer_email":        "payeremail@email.com",
+      "back_url":           "https://www.mysite.com/afterAuth",
+      "collector_id":       12345,
+      "application_id":     10648,
+      "status":             "authorized",
+      "init_point":         "https://www.mercadopago.com/mlb/debits/new?preapproval_id=preapproval_id",
       "sandbox_init_point": "https://www.mercadopago.com/mlb/debits/new?preapproval_id=preapproval_id",
       "external_reference": "OP-1234",
-      "reason": "Detailed description about your service",
-      "auto_recurring": 
-      {
-        "frequency": 1,
-        "frequency_type": "months",
+      "reason":             "Detailed description about your service",
+      "auto_recurring": {
+        "frequency":          1,
+        "frequency_type":     "months",
         "transaction_amount": 60,
-        "currency_id": "BRL"
+        "currency_id":        "BRL"
       },
-      "date_created": "2012-08-31T11:50:26.648-04:00",
+      "date_created":  "2012-08-31T11:50:26.648-04:00",
       "last_modified": "2012-08-31T11:50:26.648-04:00"
     }
 
@@ -415,17 +413,9 @@ This gem has tests for a few methods. To check if it is working properly, just r
 Changelog
 ---------
 
-2.0.5
+2.1.0 (thanks jamessonfaria)
 
-Added a notification to recurring payments method in the client.
-
-2.0.4
-
-Added a notification to recurring payments after authorized next recurring payments method in the client.
-
-2.0.3
-
-Added functionality to create and get recurring payments.
+Added functionality to create and get recurring payments. Also added support for recurring payments notification.
 
 2.0.2
 
