@@ -5,6 +5,7 @@ require 'mercadopago'
 
 class TestMercadoPago < MiniTest::Unit::TestCase
 
+
   #
   # Valid credentials to be used in the tests.
   #
@@ -124,5 +125,7 @@ class TestMercadoPago < MiniTest::Unit::TestCase
     assert_equal 1, results.length
     assert_equal external_reference, results[0]['collection']['external_reference']
   end
+
+
 
 end
