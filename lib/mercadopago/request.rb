@@ -1,9 +1,12 @@
-require 'rest-client'
+require 'faraday'
 require 'json'
 
 module MercadoPago
 
   module Request
+
+    class ClientError < Exception
+    end
 
     #
     # This URL is the base for all API calls.
@@ -18,10 +21,8 @@ module MercadoPago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.wrap_post(path, payload, headers = {})
-
       raise ClientError('No data given') if payload.nil? or payload.empty?
       make_request(:post, path, payload, headers)
-
     end
 
     #
@@ -31,9 +32,7 @@ module MercadoPago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.wrap_get(path, headers = {})
-
       make_request(:get, path, nil, headers)
-
     end
 
     #
@@ -45,21 +44,24 @@ module MercadoPago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.make_request(type, path, payload = nil, headers = {})
+      args = [type, MERCADOPAGO_URL, path, payload, headers].compact
 
-      begin
-        args = [type, "#{MERCADOPAGO_URL}#{path}", payload, headers].compact
-        response = RestClient.send *args
+      connection = Faraday.new(MERCADOPAGO_URL, ssl: { version: :SSLv3 })
 
-        JSON.load(response)
-      rescue Exception => e
-        JSON.load(e.response)
+      response = connection.send(type) do |req|
+        req.url path
+        req.headers = headers
+        req.body = payload
       end
 
+      JSON.load(response.body)
+    rescue Exception => e
+      if e.respond_to?(:response)
+        JSON.load(e.response)
+      else
+        raise e
+      end
     end
-
-    class ClientError < Exception
-    end
-
   end
 
 end
