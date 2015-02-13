@@ -1,3 +1,4 @@
+# encoding: utf-8
 module MercadoPago
 
   module Collection
@@ -10,7 +11,8 @@ module MercadoPago
     # - payment_id: the id of the payment to be checked.
     #
     def self.notification(access_token, payment_id)
-      MercadoPago::Request.wrap_get("/collections/notifications/#{payment_id}?access_token=#{access_token}", { accept: 'application/json' })
+      uri_prefix = @sandbox ? '/sandbox' : ''
+      MercadoPago::Request.wrap_get("#{uri_prefix}/collections/notifications/#{payment_id}?access_token=#{access_token}", { accept: 'application/json' })
     end
 
     #
@@ -100,7 +102,8 @@ module MercadoPago
     def self.search(access_token, search_hash = {})
       query = search_hash.map { |e| e.join('=') }.join('&')
 
-      MercadoPago::Request.wrap_get("/collections/search?access_token=#{access_token}&#{query}", { accept: 'application/json' })
+      uri_prefix = @sandbox ? '/sandbox' : ''
+      MercadoPago::Request.wrap_get("#{uri_prefix}/collections/search?access_token=#{access_token}&#{query}", { accept: 'application/json' })
     end
 
   end

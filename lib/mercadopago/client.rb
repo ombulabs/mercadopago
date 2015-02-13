@@ -1,3 +1,4 @@
+# encoding: utf-8
 module MercadoPago
 
   class AccessError < Exception
@@ -32,7 +33,15 @@ module MercadoPago
     # - client_secret
     #
     def initialize(client_id, client_secret)
+      @sandbox = false
       load_tokens MercadoPago::Authentication.access_token(client_id, client_secret)
+    end
+
+    def sandbox_mode(enable = nil)
+      unless enable.nil?
+        @sandbox = enable
+      end
+      @sandbox_mode
     end
 
     #
