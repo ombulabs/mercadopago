@@ -20,6 +20,7 @@ module MercadoPago
   #  mp_client.get_preference(preference_id)
   #  mp_client.notification(payment_id)
   #  mp_client.search(data)
+  #  mp_client.sandbox_mode(true/false)
   #
   class Client
 
