@@ -23,7 +23,7 @@ module MercadoPago
   #
   class Client
 
-    attr_reader :access_token, :refresh_token
+    attr_reader :access_token, :refresh_token, :sandbox
 
     #
     # Creates an instance and stores the access_token to make calls to the
@@ -33,7 +33,6 @@ module MercadoPago
     # - client_secret
     #
     def initialize(client_id, client_secret)
-      @sandbox = false
       load_tokens MercadoPago::Authentication.access_token(client_id, client_secret)
     end
 
@@ -41,7 +40,7 @@ module MercadoPago
       unless enable.nil?
         @sandbox = enable
       end
-      @sandbox_mode
+      @sandbox
     end
 
     #
@@ -100,7 +99,7 @@ module MercadoPago
       when 'merchant_order'
         MercadoPago::MerchantOrder.notification(@access_token, entity_id)
       else # 'payment'
-        MercadoPago::Collection.notification(@access_token, entity_id)
+        MercadoPago::Collection.notification(@access_token, entity_id, @sandbox)
       end
     end
 
@@ -128,7 +127,7 @@ module MercadoPago
     # - search_hash: the search hash to find collections.
     #
     def search(search_hash)
-      MercadoPago::Collection.search(@access_token, search_hash)
+      MercadoPago::Collection.search(@access_token, search_hash, @sandbox)
     end
 
     #
