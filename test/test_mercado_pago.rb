@@ -113,11 +113,11 @@ class TestMercadoPago < MiniTest::Unit::TestCase
 
   def test_that_client_can_search
     mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
-    response = mp_client.search(status: :pending)
+    response = mp_client.search(status: :refunded)
 
     assert response.has_key?('results')
 
-    external_reference = 'OPERATION-ID-1234'
+    external_reference = '55723'
     response = mp_client.search(external_reference: external_reference)
     results = response['results']
 
