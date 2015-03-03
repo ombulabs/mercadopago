@@ -44,7 +44,7 @@ module MercadoPago
     # - headers: the headers to be transmitted over the HTTP request.
     #
     def self.make_request(type, path, payload = nil, headers = {})
-      args = [type, MERCADOPAGO_URL, path, payload, headers].compact
+      # args = [type, mercadopago_url, path, payload, headers].compact
 
       connection = Faraday.new(mercadopago_url, ssl: { version: :SSLv3 })
 
