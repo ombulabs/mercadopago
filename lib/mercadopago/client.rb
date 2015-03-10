@@ -1,3 +1,4 @@
+# encoding: utf-8
 module MercadoPago
 
   class AccessError < Exception
@@ -19,10 +20,11 @@ module MercadoPago
   #  mp_client.get_preference(preference_id)
   #  mp_client.notification(payment_id)
   #  mp_client.search(data)
+  #  mp_client.sandbox_mode(true/false)
   #
   class Client
 
-    attr_reader :access_token, :refresh_token
+    attr_reader :access_token, :refresh_token, :sandbox
 
     #
     # Creates an instance and stores the access_token to make calls to the
@@ -33,6 +35,18 @@ module MercadoPago
     #
     def initialize(client_id, client_secret)
       load_tokens MercadoPago::Authentication.access_token(client_id, client_secret)
+    end
+
+    #
+    # Enables or disables sandbox mode.
+    #
+    # - enable
+    #
+    def sandbox_mode(enable = nil)
+      unless enable.nil?
+        @sandbox = enable
+      end
+      @sandbox
     end
 
     #
@@ -91,7 +105,7 @@ module MercadoPago
       when 'merchant_order'
         MercadoPago::MerchantOrder.notification(@access_token, entity_id)
       else # 'payment'
-        MercadoPago::Collection.notification(@access_token, entity_id)
+        MercadoPago::Collection.notification(@access_token, entity_id, @sandbox)
       end
     end
 
@@ -119,7 +133,7 @@ module MercadoPago
     # - search_hash: the search hash to find collections.
     #
     def search(search_hash)
-      MercadoPago::Collection.search(@access_token, search_hash)
+      MercadoPago::Collection.search(@access_token, search_hash, @sandbox)
     end
 
     #

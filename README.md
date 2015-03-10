@@ -1,7 +1,7 @@
 MercadoPago Gem
 ===============
 
-Developed and maintained by the team of [Kauplus](http://www.kauplus.com).
+Developed and maintained by [Kauplus](http://www.kauplus.com).
 
 This is a Ruby client for all the services offered by [MercadoPago](http://www.mercadopago.com).
 
@@ -10,8 +10,6 @@ You should read the MercadoPago API documentation before you use this gem. This 
 You can read the documentation of the MercadoPago API here:
 * Portuguese: https://developers.mercadopago.com/integracao-checkout
 * Spanish: https://developers.mercadopago.com/integracion-checkout
-
-
 
 Installation
 ------------
@@ -85,9 +83,10 @@ Your request will need a hash to explain what the payment is for. For example:
 If everything worked out alright, you will get a response like this:
 
     {
-      "payment_methods" => {},
-      "init_point"      => "https://www.mercadopago.com/mlb/checkout/pay?pref_id=abcdefgh-9999-9999-ab99-999999999999",
-      "collector_id"    => 123456789,
+      "payment_methods"    => {},
+      "init_point"         => "https://www.mercadopago.com/mlb/checkout/pay?pref_id=abcdefgh-9999-9999-ab99-999999999999",
+      "sandbox_init_point" => "https://sandbox.mercadopago.com/mlb/checkout/pay?pref_id=abcdefgh-9999-9999-ab99-999999999999",
+      "collector_id"       => 123456789,
       "back_urls" => {
         "pending"=> "https://www.site.com/pending",
         "success"=> "http://www.site.com/success",
@@ -284,6 +283,13 @@ And the parameters thay could be used in the search hash are:
         subscription_payment: Subscription fee.
 
 
+### Sandbox mode
+
+The sandbox mode can be enabled/disabled as follows:
+
+    mp_client.sandbox(true)  # Enables sandbox
+    mp_client.sandbox(false) # Disables sandbox
+
 ### Recurring Payment Creation
 
 Your request will need a hash to explain what the recurring payment is for. For example:
@@ -412,6 +418,10 @@ This gem has tests for a few methods. To check if it is working properly, just r
 
 Changelog
 ---------
+
+2.2.0 (thanks gulymaestro)
+
+Added support to the sandbox mode.
 
 2.1.0 (thanks jamessonfaria)
 
