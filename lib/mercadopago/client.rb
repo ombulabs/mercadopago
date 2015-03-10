@@ -37,6 +37,11 @@ module MercadoPago
       load_tokens MercadoPago::Authentication.access_token(client_id, client_secret)
     end
 
+    #
+    # Enables or disables sandbox mode.
+    #
+    # - enable
+    #
     def sandbox_mode(enable = nil)
       unless enable.nil?
         @sandbox = enable
