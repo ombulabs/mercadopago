@@ -45,7 +45,7 @@ module MercadoPago
     #
     def self.make_request(type, path, payload = nil, headers = {})
       # args = [type, mercadopago_url, path, payload, headers].compact
-      connection = Faraday.new(mercadopago_url, ssl: { version: :TLSv1 } )
+      connection = Faraday.new(mercadopago_url)
 
       response = connection.send(type) do |req|
         req.url path
@@ -66,13 +66,12 @@ module MercadoPago
     # Trying to be sure that Faraday is going to be able to resolve
     # MERCADOPAGO_URL. If not I set and static IP.
     #
-
     def self.mercadopago_url
       split_url = MERCADOPAGO_URL.split('://')
       Socket.getaddrinfo(split_url[1], split_url[0])
       MERCADOPAGO_URL
     rescue
-      'https://63.128.82.9'
+      'https://216.33.196.75'
     end
 
   end
