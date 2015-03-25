@@ -72,7 +72,7 @@ module MercadoPago
       Socket.getaddrinfo(split_url[1], split_url[0])
       MERCADOPAGO_URL
     rescue
-      'https://216.33.197.77'
+      'https://63.128.82.9'
     end
 
   end
