@@ -11,10 +11,10 @@ module MercadoPago
     #
     # This URL is the base for all API calls.
     #
-    MERCADOPAGO_URL = 'https://api.mercadolibre.com'
+    MERCADOPAGO_URL = 'https://api.mercadopago.com'
 
     #
-    # Makes a POST request to a MercaPago API.
+    # Makes a POST request to a MercadoPago API.
     #
     # - path: the path of the API to be called.
     # - payload: the data to be trasmitted to the API.
@@ -26,7 +26,7 @@ module MercadoPago
     end
 
     #
-    # Makes a GET request to a MercaPago API.
+    # Makes a GET request to a MercadoPago API.
     #
     # - path: the path of the API to be called, including any query string parameters.
     # - headers: the headers to be transmitted over the HTTP request.
@@ -45,8 +45,7 @@ module MercadoPago
     #
     def self.make_request(type, path, payload = nil, headers = {})
       # args = [type, mercadopago_url, path, payload, headers].compact
-
-      connection = Faraday.new(mercadopago_url, ssl: { version: :SSLv3 })
+      connection = Faraday.new(mercadopago_url)
 
       response = connection.send(type) do |req|
         req.url path
