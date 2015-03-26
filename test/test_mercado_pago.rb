@@ -1,9 +1,16 @@
 # encoding: utf-8
 
-require 'test/unit'
+require 'minitest/autorun'
+require 'minitest/reporters'
+require 'minitest/byebug' if ENV['DEBUG']
+require 'httplog' if ENV['LOG']
 require 'mercadopago'
 
-class TestMercadoPago < Test::Unit::TestCase
+# Minitest Reporter config
+Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new]
+
+
+class TestMercadoPago < Minitest::Test
 
 
   #
@@ -48,6 +55,7 @@ class TestMercadoPago < Test::Unit::TestCase
   # Using fake client id and client secret
   def test_that_authentication_fails_with_wrong_parameters
     response = MercadoPago::Authentication.access_token('fake_client_id', 'fake_client_secret')
+
     assert_nil response['access_token']
     assert_equal "invalid_client", response['error']
   end
@@ -65,6 +73,7 @@ class TestMercadoPago < Test::Unit::TestCase
   # Using fake token
   def test_that_request_fails_with_wrong_token
     response = MercadoPago::Checkout.create_preference('fake_token', {})
+
     assert_equal 'Malformed access_token: fake_token', response['message']
     assert_equal 'bad_request', response['error']
   end
