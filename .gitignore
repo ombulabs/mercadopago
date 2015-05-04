@@ -12,6 +12,7 @@ tmtags
 
 ## rvm/rbenv
 .ruby-version
+.ruby-gemset
 
 ## Gemset
 .gs/*
