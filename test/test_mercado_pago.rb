@@ -48,7 +48,8 @@ class TestMercadoPago < Test::Unit::TestCase
   def test_that_authentication_fails_with_wrong_parameters
     response = MercadoPago::Authentication.access_token('fake_client_id', 'fake_client_secret')
     assert_nil response['access_token']
-    assert_equal "invalid_client", response['error']
+    assert_equal "internal_error", response['message']
+    assert_equal 500, response['status']
   end
 
   def test_that_refresh_token_works
@@ -64,8 +65,9 @@ class TestMercadoPago < Test::Unit::TestCase
   # Using fake token
   def test_that_request_fails_with_wrong_token
     response = MercadoPago::Checkout.create_preference('fake_token', {})
-    assert_equal 'Malformed access_token: fake_token', response['message']
+    assert_equal 'Malformed access_token: null', response['message']
     assert_equal 'bad_request', response['error']
+    assert_equal 400, response['status']
   end
 
   def test_that_client_initializes_okay_with_valid_details
