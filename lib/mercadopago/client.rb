@@ -137,6 +137,145 @@ module MercadoPago
     end
 
     #
+    # MercadoPago Custom Checkout API
+    #
+
+    #
+    # Card Tokens
+    #
+
+    #
+    # Retrieves the specified card token.
+    #
+    # - card_token_id: The ID of the card token to be retrieved.
+    #
+    def get_credit_card_token(card_token_id)
+      MercadoPago::CustomCheckout::CardTokens.get(@access_token, card_token_id)
+    end
+
+    #
+    # Updates the specified card token.
+    #
+    # - card_token_id: The ID of the card token to be updated.
+    # - data: Contains the data to be updated on the specified card token.
+    #
+    def update_credit_card_token(card_token_id, data)
+      MercadoPago::CustomCheckout::CardTokens.update(@access_token, card_token_id, data)
+    end
+
+    #
+    # Customers
+    #
+
+    #
+    # Creates a customer.
+    #
+    # - data: Contains the data required to create the customer.
+    #
+    def create_customer(data)
+      MercadoPago::CustomCheckout::Customer.create(@access_token, data)
+    end
+
+    #
+    # Retrieves a customer.
+    #
+    # - customer_id: The ID of the customer to be retrieved.
+    #
+    def get_customer(customer_id)
+      MercadoPago::CustomCheckout::Customer.get(@access_token, customer_id)
+    end
+
+    #
+    # Updates a customer.
+    #
+    # - customer_id: The ID of the customer to be retrieved.
+    # - data: Contains the data required to update the customer.
+    #
+    def update_customer(customer_id, data)
+      MercadoPago::CustomCheckout::Customer.update(@access_token, customer_id, data)
+    end
+
+    #
+    # Searches for a customer.
+    #
+    # - data: Contains the data required to search for the customer.
+    #
+    def search_customer(data)
+      MercadoPago::CustomCheckout::Customer.search(@access_token, data)
+    end
+
+    #
+    # Identification Types
+    #
+
+    #
+    # Retrieves the available identification types.
+    #
+    def get_identification_types
+      MercadoPago::CustomCheckout::IdentificationTypes.get(@access_token)
+    end
+
+    #
+    # Payment Methods
+    #
+
+    #
+    # Retrieves the available payment methods.
+    #
+    def get_payment_methods
+      MercadoPago::CustomCheckout::PaymentMethods.get(@access_token)
+    end
+
+    #
+    # Retrieves the available installments for a specific payment method.
+    #
+    # - data: Contains the data required to retrieve the installments.
+    #
+    def get_installments(data)
+      MercadoPago::CustomCheckout::PaymentMethods.get_installments(@access_token, data)
+    end
+
+    #
+    # Retrieves the available issuers for a specific payment method.
+    #
+    # - data: Contains the data required to retrieve the issuers.
+    #
+    def get_card_issuers
+      MercadoPago::CustomCheckout::PaymentMethods.get_card_issuers(@access_token)
+    end
+
+    #
+    # Payments
+    #
+
+    #
+    # Creates a payment.
+    #
+    # - data: Contains the data required to create a payment.
+    #
+    def create_payment(data)
+      MercadoPago::CustomCheckout::Payments.create(@access_token, data)
+    end
+
+    #
+    # Retrieves a payment.
+    #
+    # - payment_id: The ID of the payment to be retrieved.
+    #
+    def get_payment(payment_id)
+       MercadoPago::CustomCheckout::Payments.get(@access_token, payment_id)
+    end
+
+    #
+    # Updates a payment.
+    #
+    # - payment_id: The ID of the payment to be updated.
+    #
+    def update_payment(payment_id, data)
+       MercadoPago::CustomCheckout::Payments.update(@access_token, payment_id, data)
+    end
+
+    #
     # Private methods.
     #
     private

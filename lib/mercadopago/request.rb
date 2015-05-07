@@ -14,7 +14,7 @@ module MercadoPago
     MERCADOPAGO_URL = 'https://api.mercadopago.com'
 
     #
-    # Makes a POST request to a MercadoPago API.
+    # Makes a POST request to the MercadoPago API.
     #
     # - path: the path of the API to be called.
     # - payload: the data to be trasmitted to the API.
@@ -26,7 +26,7 @@ module MercadoPago
     end
 
     #
-    # Makes a GET request to a MercadoPago API.
+    # Makes a GET request to the MercadoPago API.
     #
     # - path: the path of the API to be called, including any query string parameters.
     # - headers: the headers to be transmitted over the HTTP request.
@@ -36,7 +36,17 @@ module MercadoPago
     end
 
     #
-    # Makes a HTTP request to a MercadoPago API.
+    # Makes a PUT request to the MercadoPago API.
+    #
+    # - path: the path of the API to be called, including any query string parameters.
+    # - headers: the headers to be transmitted over the HTTP request.
+    #
+    def self.wrap_put(path, headers = {})
+      make_request(:put, path, nil, headers)
+    end
+
+    #
+    # Makes a HTTP request to the MercadoPago API.
     #
     # - type: the HTTP request type (:get, :post, :put, :delete).
     # - path: the path of the API to be called.
