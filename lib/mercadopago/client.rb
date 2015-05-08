@@ -173,7 +173,7 @@ module MercadoPago
     # - data: Contains the data required to create the customer.
     #
     def create_customer(data)
-      MercadoPago::CustomCheckout::Customer.create(@access_token, data)
+      MercadoPago::CustomCheckout::Customers.create(@access_token, data)
     end
 
     #
@@ -182,7 +182,7 @@ module MercadoPago
     # - customer_id: The ID of the customer to be retrieved.
     #
     def get_customer(customer_id)
-      MercadoPago::CustomCheckout::Customer.get(@access_token, customer_id)
+      MercadoPago::CustomCheckout::Customers.get(@access_token, customer_id)
     end
 
     #
@@ -192,7 +192,7 @@ module MercadoPago
     # - data: Contains the data required to update the customer.
     #
     def update_customer(customer_id, data)
-      MercadoPago::CustomCheckout::Customer.update(@access_token, customer_id, data)
+      MercadoPago::CustomCheckout::Customers.update(@access_token, customer_id, data)
     end
 
     #
@@ -201,7 +201,7 @@ module MercadoPago
     # - data: Contains the data required to search for the customer.
     #
     def search_customer(data)
-      MercadoPago::CustomCheckout::Customer.search(@access_token, data)
+      MercadoPago::CustomCheckout::Customers.search(@access_token, data)
     end
 
     #
