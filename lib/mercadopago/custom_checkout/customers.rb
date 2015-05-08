@@ -13,7 +13,7 @@ module MercadoPago
 
       def self.search(access_token, payload)
         headers = { accept: 'application/json' }
-        MercadoPago::Request.wrap_get("/v1/customers/search?access_token=#{access_token}", payload, headers)
+        MercadoPago::Request.make_request(:get, "/v1/customers/search?access_token=#{access_token}", payload, headers)
       end
 
       def self.update(access_token, customer_id, payload)
