@@ -24,7 +24,10 @@ module MercadoPago
   #
   class Client
 
-    attr_reader :access_token, :refresh_token, :sandbox
+    attr_reader :access_token,
+                :custom_checkout_access_token,
+                :refresh_token,
+                :sandbox
 
     #
     # Creates an instance and stores the access_token to make calls to the
@@ -33,8 +36,12 @@ module MercadoPago
     # - client_id
     # - client_secret
     #
-    def initialize(client_id, client_secret)
+    def initialize(client_id, client_secret, custom_checkout_access_token = nil)
       load_tokens MercadoPago::Authentication.access_token(client_id, client_secret)
+
+      unless custom_checkout_access_token.nil?
+        @custom_checkout_access_token = custom_checkout_access_token
+      end
     end
 
     #
@@ -150,7 +157,7 @@ module MercadoPago
     # - card_token_id: The ID of the card token to be retrieved.
     #
     def get_credit_card_token(card_token_id)
-      MercadoPago::CustomCheckout::CardTokens.get(@access_token, card_token_id)
+      MercadoPago::CustomCheckout::CardTokens.get(@custom_checkout_access_token, card_token_id)
     end
 
     #
@@ -160,7 +167,7 @@ module MercadoPago
     # - data: Contains the data to be updated on the specified card token.
     #
     def update_credit_card_token(card_token_id, data)
-      MercadoPago::CustomCheckout::CardTokens.update(@access_token, card_token_id, data)
+      MercadoPago::CustomCheckout::CardTokens.update(@custom_checkout_access_token, card_token_id, data)
     end
 
     #
@@ -173,7 +180,7 @@ module MercadoPago
     # - data: Contains the data required to create the customer.
     #
     def create_customer(data)
-      MercadoPago::CustomCheckout::Customers.create(@access_token, data)
+      MercadoPago::CustomCheckout::Customers.create(@custom_checkout_access_token, data)
     end
 
     #
@@ -182,7 +189,7 @@ module MercadoPago
     # - customer_id: The ID of the customer to be retrieved.
     #
     def get_customer(customer_id)
-      MercadoPago::CustomCheckout::Customers.get(@access_token, customer_id)
+      MercadoPago::CustomCheckout::Customers.get(@custom_checkout_access_token, customer_id)
     end
 
     #
@@ -192,7 +199,7 @@ module MercadoPago
     # - data: Contains the data required to update the customer.
     #
     def update_customer(customer_id, data)
-      MercadoPago::CustomCheckout::Customers.update(@access_token, customer_id, data)
+      MercadoPago::CustomCheckout::Customers.update(@custom_checkout_access_token, customer_id, data)
     end
 
     #
@@ -201,7 +208,7 @@ module MercadoPago
     # - data: Contains the data required to search for the customer.
     #
     def search_customer(data)
-      MercadoPago::CustomCheckout::Customers.search(@access_token, data)
+      MercadoPago::CustomCheckout::Customers.search(@custom_checkout_access_token, data)
     end
 
     #
@@ -212,7 +219,7 @@ module MercadoPago
     # Retrieves the available identification types.
     #
     def get_identification_types
-      MercadoPago::CustomCheckout::IdentificationTypes.get(@access_token)
+      MercadoPago::CustomCheckout::IdentificationTypes.get(@custom_checkout_access_token)
     end
 
     #
@@ -223,7 +230,7 @@ module MercadoPago
     # Retrieves the available payment methods.
     #
     def get_payment_methods
-      MercadoPago::CustomCheckout::PaymentMethods.get(@access_token)
+      MercadoPago::CustomCheckout::PaymentMethods.get(@custom_checkout_access_token)
     end
 
     #
@@ -232,7 +239,7 @@ module MercadoPago
     # - data: Contains the data required to retrieve the installments.
     #
     def get_installments(data)
-      MercadoPago::CustomCheckout::PaymentMethods.get_installments(@access_token, data)
+      MercadoPago::CustomCheckout::PaymentMethods.get_installments(@custom_checkout_access_token, data)
     end
 
     #
@@ -241,7 +248,7 @@ module MercadoPago
     # - data: Contains the data required to retrieve the issuers.
     #
     def get_card_issuers
-      MercadoPago::CustomCheckout::PaymentMethods.get_card_issuers(@access_token)
+      MercadoPago::CustomCheckout::PaymentMethods.get_card_issuers(@custom_checkout_access_token)
     end
 
     #
@@ -254,7 +261,7 @@ module MercadoPago
     # - data: Contains the data required to create a payment.
     #
     def create_payment(data)
-      MercadoPago::CustomCheckout::Payments.create(@access_token, data)
+      MercadoPago::CustomCheckout::Payments.create(@custom_checkout_access_token, data)
     end
 
     #
@@ -263,7 +270,7 @@ module MercadoPago
     # - payment_id: The ID of the payment to be retrieved.
     #
     def get_payment(payment_id)
-       MercadoPago::CustomCheckout::Payments.get(@access_token, payment_id)
+       MercadoPago::CustomCheckout::Payments.get(@custom_checkout_access_token, payment_id)
     end
 
     #
@@ -272,7 +279,7 @@ module MercadoPago
     # - payment_id: The ID of the payment to be updated.
     #
     def update_payment(payment_id, data)
-       MercadoPago::CustomCheckout::Payments.update(@access_token, payment_id, data)
+       MercadoPago::CustomCheckout::Payments.update(@custom_checkout_access_token, payment_id, data)
     end
 
     #
