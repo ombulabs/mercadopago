@@ -7,6 +7,7 @@ module MercadoPago
       end
 
       def self.get_installments(access_token, payload)
+        payload = JSON.generate(payload)
         headers = { accept: 'application/json' }
         MercadoPago::Request.make_request(:get, "/v1/payment_methods/installments?access_token=#{access_token}", payload, headers)
       end

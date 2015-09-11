@@ -2,6 +2,7 @@ module MercadoPago
   module CustomCheckout
     module Customers
       def self.create(access_token, payload)
+        payload = JSON.generate(payload)
         headers = { content_type: 'application/json', accept: 'application/json' }
         MercadoPago::Request.wrap_post("/v1/customers?access_token=#{access_token}", payload, headers)
       end
@@ -12,11 +13,13 @@ module MercadoPago
       end
 
       def self.search(access_token, payload)
+        payload = JSON.generate(payload)
         headers = { accept: 'application/json' }
         MercadoPago::Request.make_request(:get, "/v1/customers/search?access_token=#{access_token}", payload, headers)
       end
 
       def self.update(access_token, customer_id, payload)
+        payload = JSON.generate(payload)
         headers = { content_type: 'application/json', accept: 'application/json' }
         MercadoPago::Request.wrap_put("/v1/customers/#{customer_id}?access_token=#{access_token}", payload, headers)
       end
