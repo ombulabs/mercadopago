@@ -15,4 +15,5 @@ tmtags
 .ruby-gemset
 
 ## Gemset
+.rvmrc
 .gs/*

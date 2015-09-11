@@ -9,10 +9,7 @@ require 'mercadopago'
 # Minitest Reporter config
 Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new]
 
-
 class TestMercadoPago < Minitest::Test
-
-
   #
   # Valid credentials to be used in the tests.
   #
@@ -57,8 +54,8 @@ class TestMercadoPago < Minitest::Test
     response = MercadoPago::Authentication.access_token('fake_client_id', 'fake_client_secret')
 
     assert_nil response['access_token']
-    assert_equal "internal_error", response['message']
-    assert_equal 500, response['status']
+    assert_equal "Invalid client_id", response['message']
+    assert_equal 400, response['status']
   end
 
   def test_that_refresh_token_works
@@ -104,7 +101,7 @@ class TestMercadoPago < Minitest::Test
     assert pref_id = response['id']
 
     response = mp_client.get_preference(pref_id)
-    assert_equal "https://www.mercadopago.com/mlb/checkout/pay?pref_id=#{pref_id}", response['init_point']
+    assert_equal "https://www.mercadopago.com/mlb/checkout/start?pref_id=#{pref_id}", response['init_point']
   end
 
   def test_that_client_can_get_payment_notification
@@ -136,7 +133,4 @@ class TestMercadoPago < Minitest::Test
     assert_equal 1, results.length
     assert_equal external_reference, results[0]['collection']['external_reference']
   end
-
-
-
 end
