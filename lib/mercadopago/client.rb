@@ -37,7 +37,7 @@ module MercadoPago
     # - client_secret
     #
     def initialize(client_id, client_secret, custom_checkout_access_token = nil)
-      load_tokens MercadoPago::Authentication.access_token(client_id, client_secret)
+      load_tokens(MercadoPago::Authentication.access_token(client_id, client_secret))
 
       unless custom_checkout_access_token.nil?
         @custom_checkout_access_token = custom_checkout_access_token
@@ -63,7 +63,7 @@ module MercadoPago
     # - client_secret
     #
     def refresh_access_token(client_id, client_secret)
-      load_tokens MercadoPago::Authentication.refresh_access_token(client_id, client_secret, @refresh_token)
+      load_tokens(MercadoPago::Authentication.refresh_access_token(client_id, client_secret, @refresh_token))
     end
 
     #

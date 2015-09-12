@@ -53,9 +53,9 @@ module MercadoPago
     # - payload: the data to be trasmitted to the API.
     # - headers: the headers to be transmitted over the HTTP request.
     #
+
     def self.make_request(type, path, payload = nil, headers = {})
-      # args = [type, mercadopago_url, path, payload, headers].compact
-      ssl_option = { verify: self.verify? }
+      ssl_option = { verify: true }
       connection = Faraday.new(MERCADOPAGO_URL, ssl: ssl_option)
 
       response = connection.send(type) do |req|
@@ -71,13 +71,6 @@ module MercadoPago
       else
         raise e
       end
-    end
-
-    def self.verify?
-      split_url = MERCADOPAGO_URL.split('://')
-      !(Socket.getaddrinfo(split_url[1], split_url[0]).flatten.include?('63.128.82.9'))
-    rescue
-      true
     end
 
   end

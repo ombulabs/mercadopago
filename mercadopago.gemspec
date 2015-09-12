@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry'
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'pry-byebug'
-  # s.add_development_dependency 'test-unit'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'minitest-byebug'
   s.add_development_dependency 'minitest-reporters'

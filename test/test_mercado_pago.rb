@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/byebug' if ENV['DEBUG']
@@ -84,7 +83,7 @@ class TestMercadoPago < Minitest::Test
 
   def test_that_client_fails_with_wrong_details
     assert_raises(MercadoPago::AccessError) do
-      mp_client = MercadoPago::Client.new('fake_client_id', 'fake_client_secret')
+      MercadoPago::Client.new('fake_client_id', 'fake_client_secret')
     end
   end
 
