@@ -9,7 +9,7 @@ module MercadoPago
     # - merchant_order_id: the id of the order to be checked.
     #
     def self.notification(access_token, merchant_order_id)
-      MercadoPago::Request.wrap_get("/merchant_orders/#{merchant_order_id}?access_token=#{access_token}", { accept: 'application/json' })
+      MercadoPago::Request.wrap_get("/merchant_orders/#{merchant_order_id}?access_token=#{access_token}")
     end
 
   end

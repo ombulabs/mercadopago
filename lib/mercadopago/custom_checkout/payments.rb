@@ -1,21 +1,19 @@
 module MercadoPago
   module CustomCheckout
     module Payments
+
       def self.create(access_token, payload)
         payload = JSON.generate(payload)
-        headers = { content_type: 'application/json', accept: 'application/json' }
-        MercadoPago::Request.wrap_post("/v1/payments?access_token=#{access_token}", payload, headers)
+        MercadoPago::Request.wrap_post("/v1/payments?access_token=#{access_token}", payload)
       end
 
       def self.get(access_token, payment_id)
-        headers = { accept: 'application/json' }
-        MercadoPago::Request.wrap_get("/v1/payments/#{payment_id}?access_token=#{access_token}", headers)
+        MercadoPago::Request.wrap_get("/v1/payments/#{payment_id}?access_token=#{access_token}")
       end
 
       def self.update(access_token, payment_id, payload)
         payload = JSON.generate(payload)
-        headers = { content_type: 'application/json', accept: 'application/json' }
-        MercadoPago::Request.wrap_put("/v1/payments/#{payment_id}?access_token=#{access_token}", payload, headers)
+        MercadoPago::Request.wrap_put("/v1/payments/#{payment_id}?access_token=#{access_token}", payload)
       end
     end
   end

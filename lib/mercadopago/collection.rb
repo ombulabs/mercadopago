@@ -13,7 +13,7 @@ module MercadoPago
     #
     def self.notification(access_token, payment_id, sandbox = false)
       uri_prefix = sandbox ? '/sandbox' : ''
-      MercadoPago::Request.wrap_get("#{uri_prefix}/collections/notifications/#{payment_id}?access_token=#{access_token}", { accept: 'application/json' })
+      MercadoPago::Request.wrap_get("#{uri_prefix}/collections/notifications/#{payment_id}?access_token=#{access_token}")
     end
 
     #
@@ -21,7 +21,7 @@ module MercadoPago
     # - authorized_id: the id of the authorized payment to be checked.
     #
     def self.notification_authorized(access_token, authorized_id)
-      MercadoPago::Request.wrap_get("/authorized_payments/#{authorized_id}?access_token=#{access_token}", { accept: 'application/json' })
+      MercadoPago::Request.wrap_get("/authorized_payments/#{authorized_id}?access_token=#{access_token}")
     end
 
     #
@@ -29,7 +29,7 @@ module MercadoPago
     # - preapproval_id: the id of the recurring payment to be checked.
     #
     def self.notification_preapproval(access_token, preapproval_id)
-      MercadoPago::Request.wrap_get("/preapproval/#{preapproval_id}?access_token=#{access_token}", { accept: 'application/json' })
+      MercadoPago::Request.wrap_get("/preapproval/#{preapproval_id}?access_token=#{access_token}")
     end
 
     #
@@ -105,7 +105,7 @@ module MercadoPago
       query = search_hash.map { |e| e.join('=') }.join('&')
 
       uri_prefix = sandbox ? '/sandbox' : ''
-      MercadoPago::Request.wrap_get("#{uri_prefix}/collections/search?access_token=#{access_token}&#{query}", { accept: 'application/json' })
+      MercadoPago::Request.wrap_get("#{uri_prefix}/collections/search?access_token=#{access_token}&#{query}")
     end
 
   end

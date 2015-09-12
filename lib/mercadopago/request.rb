@@ -8,11 +8,21 @@ module MercadoPago
     class ClientError < Exception
     end
 
+    MIME_JSON = 'application/json'
+    MERCADOPAGO_RUBY_SDK_VERSION = '0.3.4'
+
     #
     # This URL is the base for all API calls.
     #
     MERCADOPAGO_URL = 'https://api.mercadopago.com'
 
+    def self.default_headers
+      {
+        'User-Agent' => "MercadoPago Ruby SDK v" + MERCADOPAGO_RUBY_SDK_VERSION,
+        content_type: MIME_JSON,
+        accept: MIME_JSON
+      }
+    end
     #
     # Makes a POST request to the MercadoPago API.
     #
@@ -41,8 +51,8 @@ module MercadoPago
     # - path: the path of the API to be called, including any query string parameters.
     # - headers: the headers to be transmitted over the HTTP request.
     #
-    def self.wrap_put(path, headers = {})
-      make_request(:put, path, nil, headers)
+    def self.wrap_put(path, payload, headers = {})
+      make_request(:put, path, payload, headers)
     end
 
     #
@@ -53,8 +63,8 @@ module MercadoPago
     # - payload: the data to be trasmitted to the API.
     # - headers: the headers to be transmitted over the HTTP request.
     #
-
     def self.make_request(type, path, payload = nil, headers = {})
+      headers = default_headers.merge(headers)
       ssl_option = { verify: true }
       connection = Faraday.new(MERCADOPAGO_URL, ssl: ssl_option)
 
