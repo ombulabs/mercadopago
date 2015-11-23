@@ -286,8 +286,8 @@ And the parameters thay could be used in the search hash are:
 
 The sandbox mode can be enabled/disabled as follows:
 
-    mp_client.sandbox(true)  # Enables sandbox
-    mp_client.sandbox(false) # Disables sandbox
+    mp_client.sandbox_mode(true)  # Enables sandbox
+    mp_client.sandbox_mode(false) # Disables sandbox
 
 ### Recurring Payment Creation
 
