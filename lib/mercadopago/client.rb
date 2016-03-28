@@ -128,6 +128,16 @@ module MercadoPago
     end
 
     #
+    # Updates a recurring payment.
+    #
+    # - preapproval_id: the id of the recurring payment to be checked.
+    # - data: a hash of preferences that will be trasmitted to checkout API.
+    #
+    def update_preapproval(preapproval_id, data)
+      MercadoPago::Checkout.update_preapproval_payment(@access_token, preapproval_id, data)
+    end
+
+    #
     # Searches for collections that matches some of the search hash criteria.
     #
     # - search_hash: the search hash to find collections.
