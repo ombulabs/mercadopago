@@ -33,7 +33,6 @@ module MercadoPago
     # - preference_id: the payment preference ID
     #
     def self.get_preference(access_token, preference_id)
-      headers = { accept: 'application/json' }
       MercadoPago::Request.wrap_get("/checkout/preferences/#{preference_id}?access_token=#{access_token}")
     end
 
@@ -56,8 +55,20 @@ module MercadoPago
     # - preapproval_id: the preapproval payment ID
     #
     def self.get_preapproval_payment(access_token, preapproval_id)
-      headers = { accept: 'application/json' }
       MercadoPago::Request.wrap_get("/preapproval/#{preapproval_id}?access_token=#{access_token}")
+    end
+
+    #
+    # - access_token: the MercadoPago account associated with this access_token will
+    #                 receive the money from the payment of preapproval payment.
+    # - preapproval_id: the preapproval payment ID
+    # - data: a hash of preferences that will be trasmitted to checkout API.
+    #
+    def self.update_preapproval_payment(access_token, preapproval_id, data)
+      payload = JSON.generate(data)
+      headers = { content_type: 'application/json', accept: 'application/json' }
+
+      MercadoPago::Request.wrap_put("/preapproval/#{preapproval_id}?access_token=#{access_token}", payload, headers)
     end
 
   end
