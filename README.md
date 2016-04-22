@@ -1,7 +1,7 @@
 MercadoPago Gem
 ===============
 
-Developed and maintained by [Kauplus](http://www.kauplus.com).
+Developed by [Kauplus](http://www.kauplus.com) and maintained by [Ombulabs](http://www.ombulabs.com).
 
 This is a Ruby client for all the services offered by [MercadoPago](http://www.mercadopago.com).
 
