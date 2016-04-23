@@ -8,7 +8,9 @@ class TestMercadoPago < Test::Unit::TestCase
   #
   # Valid credentials to be used in the tests.
   #
-  CREDENTIALS = { client_id: '3962917649351233', client_secret: 'rp7Ec38haoig7zWQXekXMiqA068eS376' }
+  CREDENTIALS = {
+    client_id: '3962917649351233',
+    client_secret: 'rp7Ec38haoig7zWQXekXMiqA068eS376' }
 
   #
   # Example payment request.
@@ -40,20 +42,27 @@ class TestMercadoPago < Test::Unit::TestCase
 
   # With a valid client id and secret (test account)
   def test_that_authentication_returns_access_token
-    response = MercadoPago::Authentication.access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    response = MercadoPago::Authentication
+                 .access_token(CREDENTIALS[:client_id],
+                               CREDENTIALS[:client_secret])
     assert response['access_token']
   end
 
   # Using fake client id and client secret
   def test_that_authentication_fails_with_wrong_parameters
-    response = MercadoPago::Authentication.access_token('fake_client_id', 'fake_client_secret')
+    response = MercadoPago::Authentication.access_token('fake_client_id',
+                                                        'fake_client_secret')
     assert_nil response['access_token']
     assert_equal "invalid_client", response['error']
   end
 
   def test_that_refresh_token_works
-    auth = MercadoPago::Authentication.access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
-    refresh = MercadoPago::Authentication.refresh_access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret], auth['refresh_token'])
+    auth = MercadoPago::Authentication
+             .access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    refresh = MercadoPago::Authentication
+                .refresh_access_token(CREDENTIALS[:client_id],
+                                      CREDENTIALS[:client_secret],
+                                      auth['refresh_token'])
 
     assert refresh['access_token']
     assert refresh['refresh_token']
@@ -69,7 +78,8 @@ class TestMercadoPago < Test::Unit::TestCase
   end
 
   def test_that_client_initializes_okay_with_valid_details
-    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id],
+                                        CREDENTIALS[:client_secret])
     assert mp_client.access_token
   end
 
@@ -80,13 +90,15 @@ class TestMercadoPago < Test::Unit::TestCase
   end
 
   def test_that_client_can_create_payment_preference
-    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id],
+                                        CREDENTIALS[:client_secret])
     response = mp_client.create_preference(PAYMENT_REQUEST)
     assert response['init_point']
   end
 
   def test_that_client_can_get_preference
-    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id],
+                                        CREDENTIALS[:client_secret])
 
     response = mp_client.create_preference(PAYMENT_REQUEST)
     assert pref_id = response['id']
@@ -97,7 +109,8 @@ class TestMercadoPago < Test::Unit::TestCase
 
   def test_that_client_can_get_payment_notification
     payment_id = 849707350
-    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id],
+                                        CREDENTIALS[:client_secret])
 
     response = mp_client.notification(payment_id)
     assert_equal payment_id, response['collection']['id']
@@ -105,14 +118,16 @@ class TestMercadoPago < Test::Unit::TestCase
 
   def test_that_client_can_get_merchant_order_notification
     payment_id = 61166827
-    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id],
+                                        CREDENTIALS[:client_secret])
 
     response = mp_client.notification(payment_id, 'merchant_order')
     assert_equal payment_id, response['id']
   end
 
   def test_that_client_can_search
-    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id],
+                                        CREDENTIALS[:client_secret])
     response = mp_client.search(status: :refunded)
 
     assert response.has_key?('results')
