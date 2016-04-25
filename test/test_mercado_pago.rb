@@ -38,6 +38,22 @@ class TestMercadoPago < Test::Unit::TestCase
     }
   }
 
+  #
+  # Example preapproval request
+  #
+  PREAPPROVAL_REQUEST = {
+    payer_email: "buyer@email.com",
+    back_url: "http://www.example.com/payment_complete",
+    reason: "reason text",
+    external_reference: "order_id 1234",
+    auto_recurring: {
+      frequency: 1,
+      frequency_type: :months,
+      transaction_amount:  12.99,
+      currency_id:  "USD"
+    }
+  }
+
   # With a valid client id and secret (test account)
   def test_that_authentication_returns_access_token
     response = MercadoPago::Authentication.access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
@@ -125,4 +141,22 @@ class TestMercadoPago < Test::Unit::TestCase
     assert_equal external_reference, results[0]['collection']['external_reference']
   end
 
+  def test_that_client_can_create_preapproval_payment
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+
+    response = mp_client.create_preapproval_payment(PREAPPROVAL_REQUEST)
+    assert response['init_point']
+  end
+
+  def test_that_client_can_cancel_preapproval
+    mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+
+    response = mp_client.create_preapproval_payment(PREAPPROVAL_REQUEST)
+    assert preap_id = response['id']
+
+    response = mp_client.cancel_preapproval_payment(preap_id)
+    assert_equal "canceled", response['status']
+    assert_equal "https://www.mercadopago.com/mla/debits/new?preapproval_id=#{preap_id}", response['init_point']
+    assert_equal "https://sandbox.mercadopago.com/mla/debits/new?preapproval_id=#{preap_id}", response['sandbox_init_point']
+  end
 end

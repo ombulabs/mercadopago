@@ -26,6 +26,18 @@ module MercadoPago
     end
 
     #
+    # Makes a PUT request to a MercadoPago API.
+    #
+    # - path: the path of the API to be called.
+    # - payload: the data to be trasmitted to the API.
+    # - headers: the headers to be transmitted over the HTTP request.
+    #
+    def self.wrap_put(path, payload, headers = {})
+      raise ClientError('No data given') if payload.nil? or payload.empty?
+      make_request(:put, path, payload, headers)
+    end
+
+    #
     # Makes a GET request to a MercadoPago API.
     #
     # - path: the path of the API to be called, including any query string parameters.
