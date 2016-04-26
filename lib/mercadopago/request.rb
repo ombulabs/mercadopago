@@ -11,7 +11,7 @@ module MercadoPago
     #
     # This URL is the base for all API calls.
     #
-    MERCADOPAGO_URL = 'https://api.mercadopago.com'
+    MERCADOPAGO_URL = 'https://api.mercadopago.com'.freeze
 
     #
     # Makes a POST request to a MercadoPago API.

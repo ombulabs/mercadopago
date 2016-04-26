@@ -8,6 +8,9 @@ require 'vcr'
 #
 # Valid credentials to be used in the tests.
 #
+CREDENTIALS = {
+  client_id: '3962917649351233',
+  client_secret: 'rp7Ec38haoig7zWQXekXMiqA068eS376' }
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
@@ -64,7 +67,9 @@ class TestMercadoPago < Test::Unit::TestCase
   # With a valid client id and secret (test account)
   def test_that_authentication_returns_access_token
     VCR.use_cassette("login", match_requests_on: [:path]) do
-      @response = MercadoPago::Authentication.access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+      @response = MercadoPago::Authentication
+                    .access_token(CREDENTIALS[:client_id],
+                                  CREDENTIALS[:client_secret])
     end
 
     assert @response['access_token']
@@ -73,7 +78,8 @@ class TestMercadoPago < Test::Unit::TestCase
   # Using fake client id and client secret
   def test_that_authentication_fails_with_wrong_parameters
     VCR.use_cassette("wrong login") do
-      @response = MercadoPago::Authentication.access_token('fake_client_id', 'fake_client_secret')
+      @response = MercadoPago::Authentication.access_token('fake_client_id',
+                                                           'fake_client_secret')
     end
 
     assert_nil @response['access_token']
@@ -83,7 +89,9 @@ class TestMercadoPago < Test::Unit::TestCase
   # TODO: make test work again
   # def test_that_refresh_token_works
   #   VCR.use_cassette("access_token") do
-  #     @auth = MercadoPago::Authentication.access_token(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+  #     @auth = MercadoPago::Authentication
+  #               .access_token(CREDENTIALS[:client_id],
+  #                             CREDENTIALS[:client_secret])
   #   end
   #   VCR.use_cassette("refresh_token") do
   #     @refresh = MercadoPago::Authentication.refresh_access_token(
@@ -99,9 +107,6 @@ class TestMercadoPago < Test::Unit::TestCase
   #   assert @refresh['refresh_token'] != @auth['refresh_token']
   # end
 
-
-  end
-
   def test_that_request_fails_with_wrong_token
     VCR.use_cassette("wrong token") do
       @response = MercadoPago::Checkout.create_preference('fake_token', {})
@@ -112,7 +117,8 @@ class TestMercadoPago < Test::Unit::TestCase
 
   def test_that_client_initializes_okay_with_valid_details
     VCR.use_cassette("login", match_requests_on: [:path]) do
-      @mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+      @mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id],
+                                           CREDENTIALS[:client_secret])
     end
 
     assert @mp_client.access_token
@@ -121,14 +127,16 @@ class TestMercadoPago < Test::Unit::TestCase
   def test_that_client_fails_with_wrong_details
     assert_raises(MercadoPago::AccessError) do
       VCR.use_cassette("wrong login") do
-        @mp_client = MercadoPago::Client.new('fake_client_id', 'fake_client_secret')
+        @mp_client = MercadoPago::Client.new('fake_client_id',
+                                             'fake_client_secret')
       end
     end
   end
 
   def test_that_client_can_create_payment_preference
     VCR.use_cassette("login", match_requests_on: [:path]) do
-      @mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+      @mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id],
+                                           CREDENTIALS[:client_secret])
     end
 
     VCR.use_cassette("create preference", match_requests_on: [:method, :path]) do
@@ -139,7 +147,8 @@ class TestMercadoPago < Test::Unit::TestCase
 
   def test_that_client_can_get_preference
     VCR.use_cassette("login", match_requests_on: [:path]) do
-      @mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+      @mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id],
+                                           CREDENTIALS[:client_secret])
     end
 
     VCR.use_cassette("create preference", match_requests_on: [:method, :path]) do
