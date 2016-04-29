@@ -9,8 +9,8 @@ require 'vcr'
 # Valid credentials to be used in the tests.
 #
 CREDENTIALS = {
-  client_id: '<CLIENT-ID>',
-  client_secret: '<CLIENT-SECRET>' }
+  client_id: 'CLIENT-ID',
+  client_secret: 'CLIENT-SECRET' }
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
