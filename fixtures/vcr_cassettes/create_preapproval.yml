@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.mercadopago.com/preapproval?access_token=APP_USR-<CLIENT-ID>-1234567
+    body:
+      encoding: UTF-8
+      string: '{"payer_email":"buyer@email.com","back_url":"http://www.example.com/payment_complete","reason":"reason
+        text","external_reference":"order_id 1234","auto_recurring":{"frequency":1,"frequency_type":"months","transaction_amount":12.99,"currency_id":"ARS"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 25 Apr 2016 18:27:43 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Mlapi-Version:
+      - 2.0.96
+      Vary:
+      - Accept,Accept-Encoding
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - 0bcd8a3d1287235b1af8e92dd33c5c00
+      X-Content-Type-Option:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Request-Id:
+      - 574a3595-4c74-4f6d-8061-6d144a45d7cc
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15724800
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Libra-Upstreamhost:
+      - 10.32.146.134
+    body:
+      encoding: UTF-8
+      string: '{"id":"561880ec6d97419f9b69b816d0e98674","payer_id":127044776,"payer_email":"buyer@email.com","back_url":"http://www.example.com/payment_complete","collector_id":64475662,"application_id":"<CLIENT-ID>","status":"pending","reason":"reason
+        text","external_reference":"order_id 1234","date_created":"2016-04-25T14:27:43.896-04:00","last_modified":"2016-04-25T14:27:43.896-04:00","init_point":"https://www.mercadopago.com/mla/debits/new?preapproval_id=561880ec6d97419f9b69b816d0e98674","sandbox_init_point":"https://sandbox.mercadopago.com/mla/debits/new?preapproval_id=561880ec6d97419f9b69b816d0e98674","auto_recurring":{"frequency":1,"frequency_type":"months","transaction_amount":12.99,"currency_id":"ARS"}}'
+    http_version:
+  recorded_at: Mon, 25 Apr 2016 18:27:44 GMT
+recorded_with: VCR 3.0.1

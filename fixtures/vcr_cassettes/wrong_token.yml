@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.mercadopago.com/checkout/preferences?access_token=fake_token
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Mon, 25 Apr 2016 18:27:48 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=60, stale-while-revalidate=30, stale-if-error=120
+      Vary:
+      - Accept,Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Request-Id:
+      - 0aac4aff-d8c1-44d5-9b56-9770bdb9b923
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=15724800
+      - max-age=16070400
+      X-Libra-Upstreamhost:
+      - 172.16.161.224
+    body:
+      encoding: UTF-8
+      string: '{"message":"Malformed access_token: null","error":"bad_request","status":400,"cause":[]}'
+    http_version: 
+  recorded_at: Mon, 25 Apr 2016 18:27:48 GMT
+recorded_with: VCR 3.0.1
