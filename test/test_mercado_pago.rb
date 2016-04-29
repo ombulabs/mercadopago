@@ -159,7 +159,7 @@ class TestMercadoPago < Test::Unit::TestCase
     VCR.use_cassette("get preference", match_requests_on: [:method, :path]) do
       @response = @mp_client.get_preference(@pref_id)
     end
-    assert_equal "https://www.mercadopago.com/mla/checkout/start?pref_id=#{@pref_id}", @response['init_point']
+    assert_match /https\:\/\/www\.mercadopago\.com\/ml(a|b)\/checkout\/start\?pref\_id\=#{@pref_id}/, @response['init_point']
   end
 
   # TODO: make test work again
