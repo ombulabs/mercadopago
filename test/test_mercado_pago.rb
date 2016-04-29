@@ -3,6 +3,7 @@
 require File.expand_path('../../lib/mercadopago', __FILE__)
 
 require 'test/unit'
+require 'webmock/test_unit'
 require 'vcr'
 
 #
