@@ -1,15 +1,17 @@
 MercadoPago Gem
 ===============
 
-Developed and maintained by [Kauplus](http://www.kauplus.com).
+Developed by [Kauplus](http://www.kauplus.com). Maintained by [OmbuLabs](http://www.ombulabs.com).
 
 This is a Ruby client for all the services offered by [MercadoPago](http://www.mercadopago.com).
 
 You should read the MercadoPago API documentation before you use this gem. This gem works with hashes and only deals with requests/responses. That's why you will need an understanding of their services.
 
 You can read the documentation of the MercadoPago API here:
-* Portuguese: https://developers.mercadopago.com/integracao-checkout
-* Spanish: https://developers.mercadopago.com/integracion-checkout
+
+* Portuguese: https://www.mercadopago.com.br/developers/pt/
+* Spanish: https://www.mercadopago.com.ar/developers/es/
+* English: https://www.mercadopago.com/developers/
 
 Installation
 ------------
@@ -47,7 +49,9 @@ The first thing to do is create a client. The client will authenticate with Merc
 
     mp_client = MercadoPago::Client.new(client_id, client_secret)
 
-If any error ocurred while authenticating with MercadoPago, an AccessError will be raised. If nothing goes wrong, no errors are raised and you are ready to use the API.
+If any error occurred while authenticating with MercadoPago, an AccessError will
+be raised. If nothing goes wrong, no errors are raised and you are ready to use
+the API.
 
 ### Payment Creation
 
@@ -124,7 +128,8 @@ If everything worked out alright, you will get a response like this:
 
 ### Payment Status Verification
 
-To check the payment status you will need the payment ID. Only then you can call the [MercadoPago IPN](https://developers.mercadopago.com/api-ipn).
+To check the payment status you will need the payment ID. Only then you can call
+the [MercadoPago IPN](https://developers.mercadopago.com/api-ipn).
 
     # Use the payment ID received on the IPN.
     payment_id = '987654321'
@@ -249,7 +254,7 @@ You will get a response like this one:
       }
     }
 
-And the parameters thay could be used in the search hash are:
+And the parameters that could be used in the search hash are:
 
     id: Payment identifier
     site_id: Country identifier: Argentina: MLA; Brasil: MLB.
