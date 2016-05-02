@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.mercadopago.com/oauth/token
+    body:
+      encoding: UTF-8
+      string: client_id=fake_client_id&client_secret=fake_client_secret&grant_type=client_credentials
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Mon, 25 Apr 2016 18:27:42 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept,Accept-Encoding
+      Cache-Control:
+      - max-age=0
+      X-Content-Type-Option:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Request-Id:
+      - 9e31afa8-3bef-4c21-93ab-0c43a7510d97
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15724800
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Libra-Upstreamhost:
+      - 172.16.149.113
+    body:
+      encoding: UTF-8
+      string: '{"message":"Invalid client_id","error":"bad_request","status":400,"cause":{"code":11,"description":"Invalid
+        client_id","data":null}}'
+    http_version: 
+  recorded_at: Mon, 25 Apr 2016 18:27:42 GMT
+recorded_with: VCR 3.0.1

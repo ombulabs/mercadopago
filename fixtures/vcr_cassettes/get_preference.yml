@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.mercadopago.com/checkout/preferences/64475662-d29e6784-66a9-4ba2-b69e-4e98424768d0?access_token=APP_USR-<CLIENT-ID>-1234567
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 25 Apr 2016 18:27:46 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Mlapi-Version:
+      - 2.0.96
+      Vary:
+      - Accept,Accept-Encoding
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - 2ac43266c5c277ed0964e03d9fb96d00
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Request-Id:
+      - 12984277-e8c1-4862-a77e-0d1908bf77c2
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=15724800
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Libra-Upstreamhost:
+      - 10.32.203.219
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhZGRpdGlvbmFsX2luZm8iOiIiLCJhdXRvX3JldHVybiI6IiIsImJhY2tf
+        dXJscyI6eyJmYWlsdXJlIjoiaHR0cDovL3d3dy5zaXRlLmNvbS9mYWlsdXJl
+        IiwicGVuZGluZyI6Imh0dHBzOi8vd3d3LnNpdGUuY29tL3BlbmRpbmciLCJz
+        dWNjZXNzIjoiaHR0cDovL3d3dy5zaXRlLmNvbS9zdWNjZXNzIn0sImNsaWVu
+        dF9pZCI6Ijk2MyIsImNvbGxlY3Rvcl9pZCI6NjQ0NzU2NjIsImRhdGVfY3Jl
+        YXRlZCI6IjIwMTYtMDQtMjVUMTQ6Mjc6NDUuNzgzLTA0OjAwIiwiZXhwaXJh
+        dGlvbl9kYXRlX2Zyb20iOm51bGwsImV4cGlyYXRpb25fZGF0ZV90byI6bnVs
+        bCwiZXhwaXJlcyI6ZmFsc2UsImV4dGVybmFsX3JlZmVyZW5jZSI6Ik9QRVJB
+        VElPTi1JRC0xMjM0IiwiaWQiOiI2NDQ3NTY2Mi1kMjllNjc4NC02NmE5LTRi
+        YTItYjY5ZS00ZTk4NDI0NzY4ZDAiLCJpbml0X3BvaW50IjoiaHR0cHM6Ly93
+        d3cubWVyY2Fkb3BhZ28uY29tL21sYS9jaGVja291dC9zdGFydD9wcmVmX2lk
+        PTY0NDc1NjYyLWQyOWU2Nzg0LTY2YTktNGJhMi1iNjllLTRlOTg0MjQ3Njhk
+        MCIsIml0ZW1zIjpbeyJpZCI6IkPDs2RpZ28gMTIzIiwiY3VycmVuY3lfaWQi
+        OiJBUlMiLCJ0aXRsZSI6IkV4YW1wbGUgVC1TaGlydCIsInBpY3R1cmVfdXJs
+        IjoiaHR0cDovL3MzLmFtYXpvbmF3cy5jb20vb21idV9zdG9yZV9wcm9kdWN0
+        aW9uL2ltYWdlcy9wcm9kdWN0cy8xMzc1L3Byb2R1Y3QvbC1pZGlvdC1zYXZh
+        bnQtcmFyZS1kZXZpY2UtdGVlLmpwZWciLCJkZXNjcmlwdGlvbiI6IlJlZCBY
+        TCBULVNoaXJ0IiwiY2F0ZWdvcnlfaWQiOiIiLCJxdWFudGl0eSI6MSwidW5p
+        dF9wcmljZSI6MC41fV0sIm1hcmtldHBsYWNlIjoiTk9ORSIsIm1hcmtldHBs
+        YWNlX2ZlZSI6MCwibm90aWZpY2F0aW9uX3VybCI6bnVsbCwib3BlcmF0aW9u
+        X3R5cGUiOiJyZWd1bGFyX3BheW1lbnQiLCJwYXllciI6eyJwaG9uZSI6eyJh
+        cmVhX2NvZGUiOiIiLCJudW1iZXIiOiIifSwiYWRkcmVzcyI6eyJ6aXBfY29k
+        ZSI6IiIsInN0cmVldF9uYW1lIjoiIiwic3RyZWV0X251bWJlciI6bnVsbH0s
+        ImVtYWlsIjoiYnV5ZXJAZW1haWwuY29tIiwiaWRlbnRpZmljYXRpb24iOnsi
+        bnVtYmVyIjoiIiwidHlwZSI6IiJ9LCJuYW1lIjoiSm9obiIsInN1cm5hbWUi
+        OiJNaWtlbCIsImRhdGVfY3JlYXRlZCI6IiJ9LCJwYXltZW50X21ldGhvZHMi
+        OnsiZXhjbHVkZWRfcGF5bWVudF9tZXRob2RzIjpbeyJpZCI6IiJ9XSwiZGVm
+        YXVsdF9pbnN0YWxsbWVudHMiOm51bGwsImRlZmF1bHRfcGF5bWVudF9tZXRo
+        b2RfaWQiOm51bGwsImV4Y2x1ZGVkX3BheW1lbnRfdHlwZXMiOlt7ImlkIjoi
+        In1dLCJpbnN0YWxsbWVudHMiOm51bGx9LCJzYW5kYm94X2luaXRfcG9pbnQi
+        OiJodHRwczovL3NhbmRib3gubWVyY2Fkb3BhZ28uY29tL21sYS9jaGVja291
+        dC9wYXk/cHJlZl9pZD02NDQ3NTY2Mi1kMjllNjc4NC02NmE5LTRiYTItYjY5
+        ZS00ZTk4NDI0NzY4ZDAiLCJzaGlwbWVudHMiOnsicmVjZWl2ZXJfYWRkcmVz
+        cyI6eyJmbG9vciI6IiIsInppcF9jb2RlIjoiIiwic3RyZWV0X25hbWUiOiIi
+        LCJhcGFydG1lbnQiOiIiLCJzdHJlZXRfbnVtYmVyIjpudWxsfX19
+    http_version:
+  recorded_at: Mon, 25 Apr 2016 18:27:46 GMT
+recorded_with: VCR 3.0.1

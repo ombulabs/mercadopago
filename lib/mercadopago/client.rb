@@ -34,7 +34,8 @@ module MercadoPago
     # - client_secret
     #
     def initialize(client_id, client_secret)
-      load_tokens MercadoPago::Authentication.access_token(client_id, client_secret)
+      load_tokens MercadoPago::Authentication.access_token(client_id,
+                                                           client_secret)
     end
 
     #
@@ -56,7 +57,8 @@ module MercadoPago
     # - client_secret
     #
     def refresh_access_token(client_id, client_secret)
-      load_tokens MercadoPago::Authentication.refresh_access_token(client_id, client_secret, @refresh_token)
+      load_tokens(MercadoPago::Authentication
+        .refresh_access_token(client_id, client_secret, @refresh_token))
     end
 
     #
@@ -92,7 +94,8 @@ module MercadoPago
     # - preapproval_id: the id of the preapproval payment preference that will be retrieved.
     #
     def get_preapproval_payment(preapproval_id)
-      MercadoPago::Checkout.get_preapproval_payment(@access_token, preapproval_id)
+      MercadoPago::Checkout.get_preapproval_payment(@access_token,
+                                                    preapproval_id)
     end
 
     #
@@ -124,7 +127,8 @@ module MercadoPago
     # - authorized_id: the id of the recurring payment authorized to be checked.
     #
     def notification_authorized(authorized_id)
-      MercadoPago::Collection.notification_authorized(@access_token, authorized_id)
+      MercadoPago::Collection.notification_authorized(@access_token,
+                                                      authorized_id)
     end
 
     #
@@ -133,7 +137,8 @@ module MercadoPago
     # - preapproval_id: the id of the recurring payment to be checked.
     #
     def notification_preapproval(preapproval_id)
-      MercadoPago::Collection.notification_preapproval(@access_token, preapproval_id)
+      MercadoPago::Collection.notification_preapproval(@access_token,
+                                                       preapproval_id)
     end
 
     #
@@ -165,7 +170,5 @@ module MercadoPago
         raise AccessError, auth['message']
       end
     end
-
   end
-
 end

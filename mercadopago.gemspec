@@ -25,4 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry'
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'test-unit'
+  s.add_development_dependency 'vcr'
+  s.add_development_dependency 'webmock'
 end
