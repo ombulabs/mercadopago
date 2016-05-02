@@ -71,7 +71,7 @@ module MercadoPago
     #
     # - access_token: the MercadoPago account associated with this access_token will
     #                 receive the money from the payment of preapproval payment.
-    # - data: a hash of preferences that will be trasmitted to checkout API.
+    # - preapproval_id: the preapproval payment ID
     #
     def self.cancel_preapproval_payment(access_token, preapproval_id)
       payload = JSON.generate(status: :cancelled)
