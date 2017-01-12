@@ -8,6 +8,11 @@ module MercadoPago
     class ClientError < Exception
     end
 
+    CONTENT_HEADERS = {
+      content_type: 'application/json',
+      accept: 'application/json'
+    }.freeze
+
     #
     # This URL is the base for all API calls.
     #
@@ -20,7 +25,7 @@ module MercadoPago
     # - payload: the data to be trasmitted to the API.
     # - headers: the headers to be transmitted over the HTTP request.
     #
-    def self.wrap_post(path, payload, headers = {})
+    def self.wrap_post(path, payload, headers = CONTENT_HEADERS)
       raise ClientError('No data given') if payload.nil? or payload.empty?
       make_request(:post, path, payload, headers)
     end

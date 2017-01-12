@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'json'
+
 module MercadoPago
 
   class AccessError < Exception
@@ -139,6 +141,31 @@ module MercadoPago
     #
     def search(search_hash)
       MercadoPago::Collection.search(@access_token, search_hash, @sandbox)
+    end
+
+    #
+    # Performs a generic GET to the given URL
+    #
+    # - access_token: the MercadoPago account access token
+    # - url: the URL to request
+    #
+    def get(url)
+      MercadoPago::Request.wrap_get("#{url}?access_token=#{access_token}")
+    end
+
+    #
+    # Performs a generic POST to the given URL
+    #
+    # - access_token: the MercadoPago account access token
+    # - url: the URL to request
+    # - data: the data to send along the request
+    #
+    def post(url, data)
+      payload = JSON.generate(data)
+
+      MercadoPago::Request
+        .wrap_post("#{url}?access_token=#{access_token}",
+                  payload)
     end
 
     #
