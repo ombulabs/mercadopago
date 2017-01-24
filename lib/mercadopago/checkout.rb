@@ -1,13 +1,6 @@
-require 'json'
-
 module MercadoPago
 
   module Checkout
-
-    CONTENT_HEADERS = {
-      content_type: 'application/json',
-      accept: 'application/json'
-    }.freeze
 
     #
     # Allows you to configure the checkout process.
@@ -24,8 +17,7 @@ module MercadoPago
 
       MercadoPago::Request
         .wrap_post("/checkout/preferences?access_token=#{access_token}",
-                   payload,
-                   CONTENT_HEADERS)
+                   payload)
     end
 
     #
@@ -55,8 +47,7 @@ module MercadoPago
 
       MercadoPago::Request
         .wrap_post("/preapproval?access_token=#{access_token}",
-                   payload,
-                   CONTENT_HEADERS)
+                   payload)
     end
 
     #

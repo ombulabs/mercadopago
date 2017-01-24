@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'json'
+require 'uri'
 
 module MercadoPago
 
@@ -146,26 +147,25 @@ module MercadoPago
     #
     # Performs a generic GET to the given URL
     #
-    # - access_token: the MercadoPago account access token
     # - url: the URL to request
     #
-    def get(url)
-      MercadoPago::Request.wrap_get("#{url}?access_token=#{access_token}")
+    def get(url, data = {}, headers = nil)
+      data[:access_token] = @access_token
+      query = URI.encode_www_form data
+
+      MercadoPago::Request.wrap_get("#{url}?{query}", headers)
     end
 
     #
     # Performs a generic POST to the given URL
     #
-    # - access_token: the MercadoPago account access token
     # - url: the URL to request
     # - data: the data to send along the request
     #
-    def post(url, data)
+    def post(url, data, headers = nil)
       payload = JSON.generate(data)
 
-      MercadoPago::Request
-        .wrap_post("#{url}?access_token=#{access_token}",
-                  payload)
+      MercadoPago::Request.wrap_post("#{url}?access_token=#{@access_token}", payload, headers)
     end
 
     #
