@@ -102,6 +102,15 @@ module MercadoPago
     end
 
     #
+    # Cancels a recurring payment.
+    #
+    # - data: contains the data according to the recurring payment that will be created.
+    #
+    def cancel_preapproval_payment(preapproval_id)
+      MercadoPago::Checkout.cancel_preapproval_payment(@access_token, preapproval_id)
+    end
+
+    #
     # Retrieves the latest information about a payment or a merchant order.
     #
     # - entity_id: the id of the entity (paymento or merchant order) to be checked.

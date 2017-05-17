@@ -57,7 +57,23 @@ module MercadoPago
     # - preapproval_id: the preapproval payment ID
     #
     def self.get_preapproval_payment(access_token, preapproval_id)
-      MercadoPago::Request.wrap_get("/preapproval/#{preapproval_id}?access_token=#{access_token}")
+      MercadoPago::Request
+        .wrap_get("/preapproval/#{preapproval_id}?access_token=#{access_token}")
+    end
+
+    #
+    # - access_token: the MercadoPago account associated with this access_token will
+    #                 receive the money from the payment of preapproval payment.
+    # - preapproval_id: the preapproval payment ID
+    #
+    def self.cancel_preapproval_payment(access_token, preapproval_id)
+      payload = JSON.generate(status: :cancelled)
+      headers = { content_type: 'application/json', accept: 'application/json' }
+
+      MercadoPago::Request
+        .wrap_put("/preapproval/#{preapproval_id}?access_token=#{access_token}",
+                  payload,
+                  headers)
     end
   end
 end

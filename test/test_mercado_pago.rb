@@ -163,6 +163,37 @@ class TestMercadoPago < Test::Unit::TestCase
     assert_match /https\:\/\/www\.mercadopago\.com\/ml(a|b)\/checkout\/start\?pref\_id\=#{@pref_id}/, @response['init_point']
   end
 
+  def test_that_client_can_create_preapproval_payment
+    VCR.use_cassette("login", match_requests_on: [:path]) do
+      @mp_client = MercadoPago::Client.new(
+        CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    end
+
+    VCR.use_cassette("create_preapproval", match_requests_on: [:path]) do
+      @response = @mp_client.create_preapproval_payment(PREAPPROVAL_REQUEST)
+    end
+    assert @response['init_point']
+  end
+
+  def test_that_client_can_cancel_preapproval
+    VCR.use_cassette("login", match_requests_on: [:path]) do
+      @mp_client = MercadoPago::Client.new(
+        CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    end
+
+    VCR.use_cassette("create_preapproval", match_requests_on: [:path]) do
+      @response = @mp_client.create_preapproval_payment(PREAPPROVAL_REQUEST)
+    end
+    assert preap_id = @response['id']
+
+    VCR.use_cassette("cancel_preapproval", match_requests_on: [:path]) do
+      @response = @mp_client.cancel_preapproval_payment(preap_id)
+    end
+
+    assert_equal "cancelled", @response['status']
+    assert_equal "http://www.example.com/payment_complete", @response['back_url']
+  end
+
   # TODO: make test work again
   # def test_that_client_can_get_payment_notification
   #   VCR.use_cassette("login", match_requests_on: [:path]) do
