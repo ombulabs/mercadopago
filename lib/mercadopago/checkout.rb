@@ -38,6 +38,19 @@ module MercadoPago
     end
 
     #
+    # Refunds payment
+    # - access_token: the MercadoPago account associated with this access_token will
+    #                 receive the money from the payment of this checkout preference.
+    # - id: payment id.
+    #
+    def self.refund_payment(access_token, id)
+      payload = JSON.generate({"status" => "refunded"})
+      headers = { content_type: 'application/json', accept: 'application/json' }
+      
+      MercadoPago::Request.wrap_put("/collections/#{id}?access_token=#{access_token}", payload, headers)
+    end
+
+    #
     # - access_token: the MercadoPago account associated with this access_token will
     #                 receive the money from the payment of preapproval payment.
     # - data: a hash of preferences that will be trasmitted to checkout API.

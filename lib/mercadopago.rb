@@ -5,6 +5,8 @@ require 'mercadopago/checkout'
 require 'mercadopago/collection'
 require 'mercadopago/merchant_order'
 require 'mercadopago/client'
+require 'mercadopago/balance'
+require 'mercadopago/movements'
 
 module MercadoPago
 end
