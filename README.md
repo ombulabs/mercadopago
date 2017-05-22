@@ -400,7 +400,38 @@ Status code: 200 OK
       "last_modified": "2012-08-31T11:50:26.648-04:00"
     }
 
+### Recurring Payment Cancellation
 
+To cancel a recurring payment you will need the preapproval ID.
+
+    # Use the preapproval ID received on the IPN.
+    preapproval_id = '987654321'
+
+    cancellation = mp_client.cancel_preapproval_payment(preapproval_id)
+
+You will get a response like this one:
+
+Status code: 200 OK
+
+    {
+      "id":                 "preapproval_id",
+      "payer_id":           12345,
+      "payer_email":        "payeremail@email.com",
+      "back_url":           "https://www.mysite.com/afterAuth",
+      "collector_id":       12345,
+      "application_id":     10648,
+      "status":             "cancelled",
+      "reason":             "reason text",
+      "external_reference": "OP-1234",
+      "date_created":  "2012-08-31T11:50:26.648-04:00",
+      "last_modified": "2012-08-31T11:50:26.648-04:00",
+      "auto_recurring": {
+        "frequency":          1,
+        "frequency_type":     "months",
+        "transaction_amount": 60,
+        "currency_id":        "BRL"
+      }
+    }
 
 ### Errors
 
@@ -424,7 +455,7 @@ This gem has tests for a few methods. To check if it is working properly, just r
 Changelog
 ---------
 
-2.3.0 (thanks Miguelcldn, etagwerker and schmierkov)
+2.3.0 (thanks Miguelcldn, etagwerker, schmierkov and mauro-oto)
 
 - Added ability for client to perform custom GET and POST requests.
 - Added cancel recurring payments endpoint.
