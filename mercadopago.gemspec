@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = MercadoPago::VERSION
   s.licenses    = ['MIT']
   s.authors     = ["Kauplus Social Commerce", "Ombu Shop, Tu Tienda Online"]
-  s.email       = ["suporte@kauplus.com.br"]
+  s.email       = ["suporte@kauplus.com.br", "hola@ombushop.com"]
   s.homepage    = "https://github.com/kauplus/mercadopago"
   s.summary     = %q{Client for the MercadoPago API}
   s.description = %q{This gem allows developers to use the services available in the MercadoPago API (http://www.mercadopago.com)}
