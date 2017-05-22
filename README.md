@@ -16,7 +16,7 @@ You can read the documentation of the MercadoPago API here:
 Installation
 ------------
 
-mercadopago 2.0.0+ needs Ruby 1.9+. Version 1.0.2 runs fine with Ruby 1.8.
+mercadopago 2.3.0 needs Ruby >= 2.0.0. For Ruby 1.9 support, use mercadopago ~> 2.2.0.
 
 To install the last version of the gem:
 
@@ -263,13 +263,13 @@ And the parameters that could be used in the search hash are:
     last_modified: Last modified date. Ej: range=last_modified&begin_date=NOW-1DAYS&end_date=NOW (Ver ISO-8601).
     money_release_date: Date of the payment's release. Ej: range=money_release_date&begin_date=NOW-1DAYS&end_date=NOW (Ver ISO-8601).
     payer_id: Buyer's identifier.
-    reason: Description of what's being payed.
+    reason: Description of what's being paid.
     transaction_amount: Amount of the transaction.
     currency_id: Currency type. Argentina: ARS (peso argentino); USD (Dólar estadounidense); Brasil: BRL (Real).
     external_reference: Field used by the seller as aditional reference.
     mercadopago_fee: MercadoPago's comission fee.
     net_received_amount: Amount payable to the seller without mercadopago_fee.
-    total_paid_amount: Obtained by adding: transaction_amount, shipping_cost and the amount payed by the buyer (including credit card's financing).
+    total_paid_amount: Obtained by adding: transaction_amount, shipping_cost and the amount paid by the buyer (including credit card's financing).
     shipping_cost: Shipping cost.
     status:
         pending: The payment process is incomplete.
@@ -423,6 +423,14 @@ This gem has tests for a few methods. To check if it is working properly, just r
 
 Changelog
 ---------
+
+2.3.0 (thanks Miguelcldn, etagwerker and schmierkov)
+
+- Added ability for client to perform custom GET and POST requests.
+- Added cancel recurring payments endpoint.
+- Better code style + DRYer code.
+- Added VCR gem for tests.
+- Documentation fixes.
 
 2.2.0 (thanks gulymaestro)
 

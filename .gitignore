@@ -2,6 +2,7 @@
 .bundle
 Gemfile.lock
 pkg/*
+.byebug_history
 
 ## MAC OS
 .DS_Store
