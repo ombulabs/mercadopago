@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'json', '>= 1.4.6'
   s.add_dependency 'faraday', '>= 0.9.0'
   s.add_development_dependency 'pry'
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'test-unit'
   s.add_development_dependency 'vcr'
