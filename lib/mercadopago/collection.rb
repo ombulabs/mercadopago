@@ -2,6 +2,7 @@
 module MercadoPago
 
   module Collection
+    MERCADO_PAGO_PER_PAGE = 30
 
     #
     # Receives an access_token and a payment id and retrieves information of the payment.
@@ -101,10 +102,39 @@ module MercadoPago
     #     subscription_payment::
     #       Subscription fee.
     #
-    def self.search(access_token, search_hash = {}, sandbox = false)
+    def self.search(access_token, search_hash = {}, sandbox = false, auto_paginate = false)
       query = search_hash.map { |e| e.join('=') }.join('&')
 
       uri_prefix = sandbox ? '/sandbox' : ''
+
+      result = []
+
+      if auto_paginate
+        response = get_collection(access_token, query, uri_prefix)
+
+        if response
+          total_items = response.fetch("paging", {}).fetch("total", nil)
+          pages       = total_items ? (total_items / MERCADO_PAGO_PER_PAGE.to_f).ceil : 1
+
+          pages.times do |page|
+            offset = page * MERCADO_PAGO_PER_PAGE
+            query  = search_hash.map { |e| e.join('=') }.join('&')
+            query += "&offset=#{offset}" if offset > 0
+
+            response = get_collection(access_token, query, uri_prefix) if offset > 0
+
+            result   << response["results"]
+            result   = [result] unless result.is_a? Array
+          end
+        end
+      else
+        result << get_collection(access_token, query, uri_prefix)
+      end
+
+      result.flatten
+    end
+
+    def self.get_collection(access_token, query, uri_prefix)
       MercadoPago::Request.wrap_get("#{uri_prefix}/collections/search?access_token=#{access_token}&#{query}", { accept: 'application/json' })
     end
 

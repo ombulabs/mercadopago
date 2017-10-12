@@ -28,6 +28,7 @@ module MercadoPago
   class Client
 
     attr_reader :access_token, :refresh_token, :sandbox
+    attr_accessor :auto_paginate
 
     #
     # Creates an instance and stores the access_token to make calls to the
@@ -151,7 +152,7 @@ module MercadoPago
     # - search_hash: the search hash to find collections.
     #
     def search(search_hash)
-      MercadoPago::Collection.search(@access_token, search_hash, @sandbox)
+      MercadoPago::Collection.search(@access_token, search_hash, @sandbox, @auto_paginate)
     end
 
     #

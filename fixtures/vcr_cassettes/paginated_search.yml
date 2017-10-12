@@ -1,0 +1,189 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.mercadopago.com/collections/search?access_token=APP_USR-<CLIENT-ID>-101217-d6e629925b4a85db8fd187bf6634a763__E_G__-64475662&status=refunded
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Oct 2017 21:05:09 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Connection:
+      - keep-alive
+      X-Api-Version:
+      - '1'
+      Vary:
+      - Accept,Accept-Encoding, User-Agent
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - 8fdbad2ea576655d1aa99aa1f992a518
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Request-Id:
+      - d6dca1a4-f713-459f-b286-74d8c3e8f6ec
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=15724800
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      Set-Cookie:
+      - TS01e25bc7=015d800523a1540d53d21bfe200f32d4f643ceeec8dacb5463365acdde0d05b7293969368b6b0f746720df9e793599556d51d36723;
+        Path=/; Secure; HTTPOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"paging":{"total":73,"limit":30,"offset":0},"results":[{"collection":{"id":2759844014,"site_id":"MLA","date_created":"2017-05-29T14:40:32.000-04:00","date_approved":"2017-05-29T14:40:32.000-04:00","last_modified":"2017-05-29T14:42:35.000-04:00","money_release_date":"2017-06-12T14:40:32.000-04:00","operation_type":"regular_payment","collector_id":64475662,"sponsor_id":null,"payer":{"nickname":"@181609902","first_name":null,"last_name":"ignaciobertotti","phone":{"area_code":null,"number":null,"extension":null},"email":"ignaciobertotti@gmail.com","id":181609902,"identification":{"type":null,"number":null}},"external_reference":null,"merchant_order_id":506859964,"reason":"Pago
+        OmbuShop","currency_id":"ARS","transaction_amount":150,"total_paid_amount":150,"shipping_cost":0,"account_money_amount":0,"mercadopago_fee":8.27,"net_received_amount":141.73,"marketplace_fee":null,"coupon_id":null,"coupon_amount":0,"coupon_fee":null,"finance_fee":0,"status":"refunded","status_detail":"refunded","status_code":"0","released":"yes","payment_type":"credit_card","installments":1,"installment_amount":150,"deferred_period":null,"cardholder":{"name":"ignacio
+        p bertotti","identification":{"type":"DNI","number":"38292836"}},"statement_descriptor":"WWW.MERCADOPAGO.COM","transaction_order_id":null,"marketplace":"NONE","tags":[],"refunds":[{"id":353967913,"amount":150,"date_created":"2017-05-29T14:42:35.644-04:00","metadata":{},"collection_id":2759844014,"movement_id":12223633406}],"amount_refunded":150,"bank_transfer_detail":{"id":null,"transaction_id":null,"financial_institution_description":null},"notification_url":null,"internal_metadata":{}}},{"collection":{"id":2761875539,"site_id":"MLA","date_created":"2017-05-30T10:15:23.000-04:00","date_approved":"2017-05-30T10:15:22.000-04:00","last_modified":"2017-05-30T10:20:16.000-04:00","money_release_date":"2017-06-13T10:15:22.000-04:00","operation_type":"regular_payment","collector_id":64475662,"sponsor_id":null,"payer":{"nickname":"IGNACIOBERTOTTI","first_name":"Ignacio","last_name":"Bertotti","phone":{"area_code":null,"number":"47752674","extension":null},"email":"ignacio@ombushop.com","id":177795865,"identification":{"type":"DNI","number":"38292836"}},"external_reference":"R384452635","merchant_order_id":507295360,"reason":"Pedido
+        R384452635 en Tiendaombulabs","currency_id":"ARS","transaction_amount":100,"total_paid_amount":100,"shipping_cost":0,"account_money_amount":0,"mercadopago_fee":5.51,"net_received_amount":94.49,"marketplace_fee":null,"coupon_id":null,"coupon_amount":0,"coupon_fee":null,"finance_fee":0,"status":"refunded","status_detail":"refunded","status_code":"0","released":"yes","payment_type":"credit_card","installments":1,"installment_amount":100,"deferred_period":null,"cardholder":{"name":"ignacio
+        p bertotti","identification":{"type":"DNI","number":"38292836"}},"statement_descriptor":"WWW.MERCADOPAGO.COM","transaction_order_id":null,"marketplace":"NONE","tags":[],"refunds":[{"id":354004106,"amount":100,"date_created":"2017-05-30T10:20:15.900-04:00","metadata":{},"collection_id":2761875539,"movement_id":12231691517}],"amount_refunded":100,"bank_transfer_detail":{"id":null,"transaction_id":null,"financial_institution_description":null},"notification_url":null,"internal_metadata":{}}},{"collection":{"id":2761993359,"site_id":"MLA","date_created":"2017-05-30T10:17:39.000-04:00","date_approved":"2017-05-30T10:17:39.000-04:00","last_modified":"2017-05-30T10:20:04.000-04:00","money_release_date":"2017-06-13T10:17:39.000-04:00","operation_type":"regular_payment","collector_id":64475662,"sponsor_id":null,"payer":{"nickname":"@258531202","first_name":null,"last_name":"ignacio+mp","phone":{"area_code":null,"number":null,"extension":null},"email":"ignacio+mp@ombushop.com","id":258531202,"identification":{"type":null,"number":null}},"external_reference":"R803556501","merchant_order_id":507303972,"reason":"Pedido
+        R803556501 en Tiendaombulabs","currency_id":"ARS","transaction_amount":150,"total_paid_amount":150,"shipping_cost":0,"account_money_amount":0,"mercadopago_fee":8.27,"net_received_amount":141.73,"marketplace_fee":null,"coupon_id":null,"coupon_amount":0,"coupon_fee":null,"finance_fee":0,"status":"refunded","status_detail":"refunded","status_code":"0","released":"yes","payment_type":"credit_card","installments":1,"installment_amount":150,"deferred_period":null,"cardholder":{"name":"ignacio
+        p bertotti","identification":{"type":"DNI","number":"38292836"}},"statement_descriptor":"WWW.MERCADOPAGO.COM","transaction_order_id":null,"marketplace":"NONE","tags":[],"refunds":[{"id":354004100,"amount":150,"date_created":"2017-05-30T10:20:04.160-04:00","metadata":{},"collection_id":2761993359,"movement_id":12231691031}],"amount_refunded":150,"bank_transfer_detail":{"id":null,"transaction_id":null,"financial_institution_description":null},"notification_url":null,"internal_metadata":{}}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}},{"collection":{"id":2759844014}}]}'
+    http_version:
+  recorded_at: Thu, 12 Oct 2017 21:05:09 GMT
+- request:
+    method: get
+    uri: https://api.mercadopago.com/collections/search?access_token=APP_USR-<CLIENT-ID>-101217-d6e629925b4a85db8fd187bf6634a763__E_G__-64475662&offset=30&status=refunded
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Oct 2017 21:05:10 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Connection:
+      - keep-alive
+      X-Api-Version:
+      - '1'
+      Vary:
+      - Accept,Accept-Encoding, User-Agent
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - c6ebb80caabfdae48fb601167fd27098
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Request-Id:
+      - 28fc5782-2324-4a50-9f94-e12e4869ecd6
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=15724800
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      Set-Cookie:
+      - TS01e25bc7=015d800523bfac2e652c09b83ec2b5dba4c3184c5747f4cc744d5a989152643dcca8c4e1e50ae567f1fa6eee94954b164c32f09686;
+        Path=/; Secure; HTTPOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"paging":{"total":3,"limit":30,"offset":30},"results":[]}'
+    http_version:
+  recorded_at: Thu, 12 Oct 2017 21:05:09 GMT
+- request:
+    method: get
+    uri: https://api.mercadopago.com/collections/search?access_token=APP_USR-<CLIENT-ID>-101217-d6e629925b4a85db8fd187bf6634a763__E_G__-64475662&offset=60&status=refunded
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Oct 2017 21:05:11 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Connection:
+      - keep-alive
+      X-Api-Version:
+      - '1'
+      Vary:
+      - Accept,Accept-Encoding, User-Agent
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - c36602d9bcd21ce1521315dd36c054be
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Request-Id:
+      - ebbecc76-94ff-4b17-95b2-f383b60b1651
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=15724800
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      Set-Cookie:
+      - TS01e25bc7=015d800523d3b04a83b4be92e13925a96ffefa2f6850ea5973905c65cc69ac93f9b00ab012adf095c026384b720ca1d6e67bbc1cf0;
+        Path=/; Secure; HTTPOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"paging":{"total":3,"limit":30,"offset":60},"results":[]}'
+    http_version:
+  recorded_at: Thu, 12 Oct 2017 21:05:10 GMT
+recorded_with: VCR 3.0.3
