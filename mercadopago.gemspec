@@ -20,12 +20,12 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here:
-  s.add_dependency 'json', '~> 1.4', '>= 1.4.6'
+  s.add_dependency 'json', '~> 1.4'
   s.add_dependency 'faraday', '~> 0.9.0'
   s.add_development_dependency 'pry', '~> 0.11.1'
-  s.add_development_dependency 'rake', '~> 12.1', '>= 12.1.0'
-  s.add_development_dependency 'byebug', '~> 9.1', '>= 9.1.0'
-  s.add_development_dependency 'test-unit', '~> 3.2', '>= 3.2.6'
-  s.add_development_dependency 'vcr', '~> 3.0', '>= 3.0.3'
-  s.add_development_dependency 'webmock', '~> 3.0', '>= 3.0.1'
+  s.add_development_dependency 'rake', '~> 12.1'
+  s.add_development_dependency 'byebug', '~> 9.1'
+  s.add_development_dependency 'test-unit', '~> 3.2'
+  s.add_development_dependency 'vcr', '~> 3.0'
+  s.add_development_dependency 'webmock', '~> 3.0'
 end
