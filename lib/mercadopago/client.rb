@@ -152,7 +152,7 @@ module MercadoPago
     # - search_hash: the search hash to find collections.
     #
     def search(search_hash)
-      MercadoPago::Collection.search(@access_token, search_hash, @sandbox, @auto_paginate)
+      MercadoPago::Collection.search(@access_token, search_hash, @sandbox, auto_paginate)
     end
 
     #
