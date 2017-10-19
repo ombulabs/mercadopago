@@ -246,22 +246,3 @@ class TestMercadoPago < Test::Unit::TestCase
     assert_equal 73, @response.length
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
