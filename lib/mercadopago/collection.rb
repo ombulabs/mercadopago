@@ -39,7 +39,7 @@ module MercadoPago
     # - access_token: an access_token of the MercadoPago account associated with the payment to be checked.
     # - search_hash: querystring in hash format.
     # - sandbox: whether or not the sandbox mode should be activated.
-    # - auto_paginate: wheter or not the result should be automaticaly paginated to return all payments
+    # - auto_paginate: whether or not the result should be automaticaly paginated to return all payments
     #
     # == Search parameter valid keys:
     # id::
