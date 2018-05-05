@@ -189,11 +189,11 @@ module MercadoPago
     # - auth: the authentication hash returned by MercadoPago.
     #
     def load_tokens(auth)
-      mandatory_keys = %w{ access_token refresh_token }
+      mandatory_keys = %w{ access_token }
 
       if (auth.keys & mandatory_keys) == mandatory_keys
         @access_token   = auth['access_token']
-        @refresh_token  = auth['refresh_token']
+        @refresh_token  = auth['refresh_token'] # Sometimes refresh_token is not received
       else
         raise AccessError, auth['message']
       end
