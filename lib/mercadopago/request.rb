@@ -65,7 +65,7 @@ module MercadoPago
     def self.make_request(type, path, payload = nil, headers = {})
       args = [type, MERCADOPAGO_URL, path, payload, headers].compact
 
-      connection = Faraday.new(MERCADOPAGO_URL)
+      connection = Faraday.new(MERCADOPAGO_URL, ssl: { version: :TLSv1_2 })
 
       response = connection.send(type) do |req|
         req.url path
