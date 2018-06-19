@@ -16,7 +16,8 @@ You can read the documentation of the MercadoPago API here:
 Installation
 ------------
 
-mercadopago 2.3.0 needs Ruby >= 2.0.0. For Ruby 1.9 support, use mercadopago ~> 2.2.0.
+mercadopago 2.3.0 needs Ruby >= 2.0.0. Ruby 1.9.3 does not support TLS v1.2,
+which is required by MercadoPago starting June 30th 2018.
 
 To install the last version of the gem:
 
