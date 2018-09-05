@@ -247,8 +247,8 @@ module MercadoPago
     #
     # - data: Contains the data required to retrieve the issuers.
     #
-    def get_card_issuers
-      MercadoPago::CustomCheckout::PaymentMethods.get_card_issuers(@custom_checkout_access_token)
+    def get_card_issuers(data)
+      MercadoPago::CustomCheckout::PaymentMethods.get_card_issuers(@custom_checkout_access_token, data)
     end
 
     #

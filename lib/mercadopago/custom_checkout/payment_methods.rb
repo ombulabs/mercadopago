@@ -10,8 +10,8 @@ module MercadoPago
         MercadoPago::Request.make_request(:get, "/v1/payment_methods/installments?access_token=#{access_token}", payload)
       end
 
-      def self.get_card_issuers(access_token)
-        MercadoPago::Request.wrap_get("/v1/payment_methods/card_issuers?access_token=#{access_token}")
+      def self.get_card_issuers(access_token, payload)
+        MercadoPago::Request.wrap_get("/v1/payment_methods/card_issuers?access_token=#{access_token}&payment_method_id=#{payload}")
       end
     end
   end
