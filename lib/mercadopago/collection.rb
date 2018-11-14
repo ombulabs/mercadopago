@@ -13,7 +13,7 @@ module MercadoPago
     #
     def self.notification(access_token, payment_id, sandbox = false)
       uri_prefix = sandbox ? '/sandbox' : ''
-      MercadoPago::Request.wrap_get("#{uri_prefix}/collections/notifications/#{payment_id}?access_token=#{access_token}", { accept: 'application/json' })
+      MercadoPago::Request.wrap_get("#{uri_prefix}/v1/payments/#{payment_id}?access_token=#{access_token}", { accept: 'application/json' })
     end
 
     #
@@ -105,7 +105,7 @@ module MercadoPago
       query = search_hash.map { |e| e.join('=') }.join('&')
 
       uri_prefix = sandbox ? '/sandbox' : ''
-      MercadoPago::Request.wrap_get("#{uri_prefix}/collections/search?access_token=#{access_token}&#{query}", { accept: 'application/json' })
+      MercadoPago::Request.wrap_get("#{uri_prefix}/v1/payments/search?access_token=#{access_token}&#{query}", { accept: 'application/json' })
     end
 
   end
