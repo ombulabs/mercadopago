@@ -113,8 +113,6 @@ module MercadoPago
       if auto_paginate
         response = get_collection(access_token, query, uri_prefix)
 
-        byebug
-
         if response
           total_items = response.fetch("paging", {}).fetch("total", nil)
           pages       = total_items ? (total_items / RESULTS_PER_PAGE.to_f).ceil : 1
