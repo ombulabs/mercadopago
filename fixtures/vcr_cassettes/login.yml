@@ -21,25 +21,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 25 Apr 2016 18:27:43 GMT
+      - Thu, 12 Oct 2017 21:05:06 GMT
       Content-Type:
       - application/json;charset=UTF-8
-      Transfer-Encoding:
-      - chunked
       Connection:
       - keep-alive
       Vary:
-      - Accept,Accept-Encoding
+      - Accept,Accept-Encoding, User-Agent
       Cache-Control:
       - max-age=0
       Etag:
-      - ea81c1fa59f6b789c1d7811bb3497072
+      - 117072c3d17a4c57ec53e81a49ccc340
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
       - DENY
       X-Request-Id:
-      - 29adeddd-6421-45c5-a855-0d3bfbb05878
+      - 5ee09a80-8c79-4b93-a2b9-e084de782f0b
       X-Xss-Protection:
       - 1; mode=block
       Strict-Transport-Security:
@@ -52,12 +50,15 @@ http_interactions:
       - PUT, GET, POST, DELETE, OPTIONS
       Access-Control-Max-Age:
       - '86400'
-      X-Libra-Upstreamhost:
-      - 172.16.161.224
+      Set-Cookie:
+      - TS016da221=0119b547a2e0a66296bbde4156a3367a684adbaa1543cf074a81cb09f5a7c4c51f64000f8eea85ae721c61a0c2dc9c5edea90f95a8;
+        Path=/; Secure; HTTPOnly
+      Transfer-Encoding:
+      - chunked
     body:
-      encoding: UTF-8
-      string: '{"access_token":"APP_USR-<CLIENT-ID>-1234567","refresh_token":"TG-2345e6rtyughj7city8d3-1234567","live_mode":true,"user_id":1234567,"token_type":"bearer","expires_in":21600,"scope":"offline_access
+      encoding: ASCII-8BIT
+      string: '{"access_token":"APP_USR-<CLIENT-ID>-101217-d6e629925b4a85db8fd187bf6634a763__E_G__-64475662","refresh_token":"TG-59dfd902e4b00c9296aab2da-64475662","live_mode":true,"user_id":64475662,"token_type":"bearer","expires_in":21600,"scope":"offline_access
         read write"}'
     http_version:
-  recorded_at: Mon, 25 Apr 2016 18:27:43 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Thu, 12 Oct 2017 21:05:06 GMT
+recorded_with: VCR 3.0.3

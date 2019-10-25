@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.mercadopago.com/collections/search?access_token=APP_USR-<CLIENT-ID>-101217-d6e629925b4a85db8fd187bf6634a763__E_G__-64475662&status=refunded
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Thu, 24 Oct 2019 23:50:42 GMT
+      Content-Type:
+      - application/json;charset=ISO-8859-1
+      Content-Length:
+      - '157'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=60,stale-while-revalidate=30, stale-if-error=120
+      X-Newrelic-App-Data:
+      - PxQOWV9WAAUTVVFaBwkHVVQJFB9AMQYAZBBZDEtZV0ZaCldOdg4cBQ1CXxQETVtcXUsMB0VSVgILXV9REANMA0UWUE9ZW1dXQBYUFV4KVgxJV0cISRBKUB8FEQsYUlgIEENZXw4DEREeJl0BV1xRc1AGXBJCNVwJAVgVTVZPCB0AVFFQDgEBX10dGwJORAdVVVRaWwEKUQZWAFgCUwMRTgJXWxIDPg==
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - f23ce7c1-8246-4b2e-bb99-c5fd125447b4
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      Strict-Transport-Security:
+      - max-age=16070400; includeSubDomains; preload
+      Timing-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '{"message":"Malformed access_token: APP_USR-<CLIENT-ID>-101217-d6e629925b4a85db8fd187bf6634a763__E_G__-64475662","error":"bad_request","status":400,"cause":[]}'
+    http_version: 
+  recorded_at: Thu, 24 Oct 2019 23:50:41 GMT
+recorded_with: VCR 5.0.0

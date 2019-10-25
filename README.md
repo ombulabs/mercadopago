@@ -288,6 +288,19 @@ And the parameters that could be used in the search hash are:
         recurring_payment: Active subscription recurring payment.
         subscription_payment: Subscription fee.
 
+### Auto Pagination
+
+It is also possible to inform if whether or not the result should be automatically paginated to return all payments. By default MercadoPago return only 30 payments on each request and if you setting up `auto_paginate` to true, will be made as many requests as needed to return all payments that matches with your search.
+
+    # Create a hash to search for
+    search_hash = { external_reference: 'OPERATION-ID-1234' }
+
+    # setup the auto_paginate to true
+    mp_client.auto_paginate = true
+
+    # do the desired search
+    search = mp_client.search(search_hash)
+
 ### Sandbox mode
 
 The sandbox mode can be enabled/disabled as follows:
