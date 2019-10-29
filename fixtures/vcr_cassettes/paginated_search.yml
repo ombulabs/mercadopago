@@ -1,0 +1,183 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.mercadopago.com/collections/search?access_token=APP_USR-<CLIENT-ID>-101217-d6e629925b4a85db8fd187bf6634a763__E_G__-64475662&status=refunded
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Oct 2017 21:05:09 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Connection:
+      - keep-alive
+      X-Api-Version:
+      - '1'
+      Vary:
+      - Accept,Accept-Encoding, User-Agent
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - 8fdbad2ea576655d1aa99aa1f992a518
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Request-Id:
+      - d6dca1a4-f713-459f-b286-74d8c3e8f6ec
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=15724800
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      Set-Cookie:
+      - TS01e25bc7=015d800523a1540d53d21bfe200f32d4f643ceeec8dacb5463365acdde0d05b7293969368b6b0f746720df9e793599556d51d36723;
+        Path=/; Secure; HTTPOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"paging":{"total":73,"limit":30,"offset":0},"results":[{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}},{"collection":{"id":2759844123}}]}'
+      http_version:
+  recorded_at: Thu, 12 Oct 2017 21:05:09 GMT
+- request:
+    method: get
+    uri: https://api.mercadopago.com/collections/search?access_token=APP_USR-<CLIENT-ID>-101217-d6e629925b4a85db8fd187bf6634a763__E_G__-64475662&offset=30&status=refunded
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Oct 2017 21:05:10 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Connection:
+      - keep-alive
+      X-Api-Version:
+      - '1'
+      Vary:
+      - Accept,Accept-Encoding, User-Agent
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - c6ebb80caabfdae48fb601167fd27098
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Request-Id:
+      - 28fc5782-2324-4a50-9f94-e12e4869ecd6
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=15724800
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      Set-Cookie:
+      - TS01e25bc7=015d800523bfac2e652c09b83ec2b5dba4c3184c5747f4cc744d5a989152643dcca8c4e1e50ae567f1fa6eee94954b164c32f09686;
+        Path=/; Secure; HTTPOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"paging":{"total":3,"limit":30,"offset":30},"results":[]}'
+    http_version:
+  recorded_at: Thu, 12 Oct 2017 21:05:09 GMT
+- request:
+    method: get
+    uri: https://api.mercadopago.com/collections/search?access_token=APP_USR-<CLIENT-ID>-101217-d6e629925b4a85db8fd187bf6634a763__E_G__-64475662&offset=60&status=refunded
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Oct 2017 21:05:11 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Connection:
+      - keep-alive
+      X-Api-Version:
+      - '1'
+      Vary:
+      - Accept,Accept-Encoding, User-Agent
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - c36602d9bcd21ce1521315dd36c054be
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Request-Id:
+      - ebbecc76-94ff-4b17-95b2-f383b60b1651
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=15724800
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      Set-Cookie:
+      - TS01e25bc7=015d800523d3b04a83b4be92e13925a96ffefa2f6850ea5973905c65cc69ac93f9b00ab012adf095c026384b720ca1d6e67bbc1cf0;
+        Path=/; Secure; HTTPOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"paging":{"total":3,"limit":30,"offset":60},"results":[]}'
+    http_version:
+  recorded_at: Thu, 12 Oct 2017 21:05:10 GMT
+recorded_with: VCR 3.0.3

@@ -2,6 +2,7 @@
 module MercadoPago
 
   module Collection
+    RESULTS_PER_PAGE = 30
 
     #
     # Receives an access_token and a payment id and retrieves information of the payment.
@@ -10,6 +11,7 @@ module MercadoPago
     # - access_token: an access_token of the MercadoPago account associated with the payment to be checked.
     # - payment_id: the id of the payment to be checked.
     # - sandbox: whether or not the sandbox mode should be activated.
+    # - auto_paginate: whether or not the result should be automaticaly paginated to return all payments
     #
     def self.notification(access_token, payment_id, sandbox = false)
       uri_prefix = sandbox ? '/sandbox' : ''
@@ -100,14 +102,41 @@ module MercadoPago
     #       Active subscription recurring payment.
     #     subscription_payment::
     #       Subscription fee.
-    #
-    def self.search(access_token, search_hash = {}, sandbox = false)
+
+    def self.search(access_token, search_hash = {}, sandbox = false, auto_paginate = false)
       query = search_hash.map { |e| e.join('=') }.join('&')
 
       uri_prefix = sandbox ? '/sandbox' : ''
-      MercadoPago::Request.wrap_get("#{uri_prefix}/v1/payments/search?access_token=#{access_token}&#{query}", { accept: 'application/json' })
+
+      result = []
+
+      if auto_paginate
+        response = get_collection(access_token, query, uri_prefix)
+
+        if response
+          total_items = response.fetch("paging", {}).fetch("total", nil)
+          pages       = total_items ? (total_items / RESULTS_PER_PAGE.to_f).ceil : 1
+
+          pages.times do |page|
+            offset = page * RESULTS_PER_PAGE
+            query  = search_hash.map { |e| e.join('=') }.join('&')
+            query += "&offset=#{offset}" if offset > 0
+
+            response = get_collection(access_token, query, uri_prefix) if offset > 0
+
+            result   << response["results"]
+            result   = [result] unless result.is_a? Array
+          end
+        end
+      else
+        result << get_collection(access_token, query, uri_prefix)
+      end
+
+      result.flatten
     end
 
+    def self.get_collection(access_token, query, uri_prefix)
+      MercadoPago::Request.wrap_get("#{uri_prefix}/collections/search?access_token=#{access_token}&#{query}", { accept: 'application/json' })
+    end
   end
-
 end

@@ -221,26 +221,29 @@ class TestMercadoPago < Test::Unit::TestCase
   #   assert_equal payment_id, @response['id']
   # end
 
-  # TODO: make test work again
-  # def test_that_client_can_search
-  #   VCR.use_cassette("login", match_requests_on: [:path]) do
-  #     @mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
-  #   end
-  #
-  #   VCR.use_cassette("search status") do
-  #     @response = @mp_client.search(status: :refunded)
-  #   end
-  #
-  #   assert @response.has_key?('results')
-  #
-  #   external_reference = '55723'
-  #
-  #   VCR.use_cassette("search external reference") do
-  #     @response = @mp_client.search(external_reference: external_reference)
-  #   end
-  #   results = @response['results']
-  #
-  #   assert_equal 1, results.length
-  #   assert_equal external_reference, results[0]['collection']['external_reference']
-  # end
+  def test_that_client_can_search
+    VCR.use_cassette("login", match_requests_on: [:path]) do
+      @mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    end
+
+    VCR.use_cassette("search status") do
+      @response = @mp_client.search(status: :refunded)
+    end
+
+    assert_equal 1, @response.length
+  end
+
+  def test_that_search_can_be_paginated
+    VCR.use_cassette("login", match_requests_on: [:path]) do
+      @mp_client = MercadoPago::Client.new(CREDENTIALS[:client_id], CREDENTIALS[:client_secret])
+    end
+
+    @mp_client.auto_paginate = true
+
+    VCR.use_cassette("paginated search") do
+      @response = @mp_client.search(status: :refunded)
+    end
+
+    assert_equal 73, @response.length
+  end
 end
