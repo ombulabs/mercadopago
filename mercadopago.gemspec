@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here:
   s.add_dependency 'json', '~> 1.4'
-  s.add_dependency 'faraday', '~> 0.9.0'
+  s.add_dependency 'faraday', '~> 0.9'
   s.add_development_dependency 'pry', '~> 0.11.1'
   s.add_development_dependency 'rake', '~> 12.1'
   s.add_development_dependency 'byebug', '~> 9.1'
