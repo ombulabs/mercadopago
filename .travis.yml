@@ -1,8 +1,0 @@
-language: ruby
-rvm:
-  - 2.2.4
-script: "rake test"
-gemfile:
-  - Gemfile
-before_install:
-  - gem update bundler
