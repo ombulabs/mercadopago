@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.licenses    = ['MIT']
   s.authors     = ["Kauplus Social Commerce", "Ombu Shop, Tu Tienda Online"]
   s.email       = ["suporte@kauplus.com.br", "hola@ombushop.com"]
-  s.homepage    = "https://github.com/kauplus/mercadopago"
+  s.homepage    = "https://github.com/ombulabs/mercadopago"
   s.summary     = %q{Client for the MercadoPago API}
   s.description = %q{This gem allows developers to use the services available in the MercadoPago API (http://www.mercadopago.com)}
 
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'faraday', '~> 0.9'
   s.add_development_dependency 'pry', '~> 0.11.1'
   s.add_development_dependency 'rake', '~> 12.1'
-  s.add_development_dependency 'byebug', '~> 9.1'
+  s.add_development_dependency 'byebug', '~> 11.1'
   s.add_development_dependency 'test-unit', '~> 3.2'
   s.add_development_dependency 'vcr', '~> 3.0'
   s.add_development_dependency 'webmock', '~> 3.0'
